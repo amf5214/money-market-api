@@ -5,9 +5,10 @@ import { NestModule } from './nest/nest.module';
 import { NewsModule } from './news/news.module';
 import { StockdataModule } from './stockdata/stockdata.module';
 import { ProfileModule } from './profile/profile.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-  imports: [AuthModule, UserModule, NestModule, NewsModule, StockdataModule, ProfileModule],
+  imports: [AuthModule, UserModule, NestModule, NewsModule, StockdataModule, ProfileModule, PrismaModule],
   controllers: [],
   providers: [],
 })
