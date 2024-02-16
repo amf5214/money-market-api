@@ -7,4 +7,14 @@ import { ForbiddenException } from '@nestjs/common';
 @Injectable()
 export class AuthService {
 	constructor() {}
+
+	async signin(dto:AuthDto) {
+
+	}
+
+
+	async signup(dto:AuthDto) {
+		
+	}
+
 }
