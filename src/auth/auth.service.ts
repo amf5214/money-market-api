@@ -13,12 +13,12 @@ export class AuthService {
 		) {}
 
 	async signin(dto:AuthDto) {
-
+		return `Signed in ${dto.email}`;
 	}
 
 
 	async signup(dto:AuthDto) {
-		
+		return "Signed up";
 	}
 
 }
