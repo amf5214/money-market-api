@@ -15,6 +15,24 @@ export class AuthService {
 		private config:ConfigService,
 		) {}
 
+	async signToken(id:number, email:string) {
+		const data = {
+			sub:id,
+			email:email,
+		}
+
+		const secret = this.config.get('JWT_SECRET');
+
+		const token = await this.jwt.signAsync(data, {
+			expiresIn:'30m',
+			secret:secret,
+		});
+
+		return {
+			access_token: token,
+		};
+	}
+
 	async signin(dto:AuthDto) {
 		return `Signed in ${dto.email}`;
 	}
