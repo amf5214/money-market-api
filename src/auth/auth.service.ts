@@ -5,6 +5,8 @@ import { ConfigService } from '@nestjs/config';
 import { ForbiddenException } from '@nestjs/common';
 import { AuthDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service'
+import { PrismaService } from '../prisma/prisma.service';
+import { User, Prisma, AuthAccount } from '@prisma/client';
 
 @Injectable({})
 export class AuthService {
