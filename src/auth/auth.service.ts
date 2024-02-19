@@ -22,26 +22,26 @@ export class AuthService {
 
 	async signup(dto:AuthDto) {
 		const hash = await argon.hash(dto.password);
-			const auth = await this.prisma.authAccount.create({
-				data: {
-					email: dto.email,
-					hash: hash,
-				},
-				select: {
-					id:true
-				}
+		const auth = await this.prisma.authAccount.create({
+			data: {
+				email: dto.email,
+				hash: hash,
+			},
+			select: {
+				id:true
+			}
 
-			});
+		});
 
-			const user = await this.prisma.user.create({
-				data: {
-					authAccountId: auth.id,
-				}
+		const user = await this.prisma.user.create({
+			data: {
+				authAccountId: auth.id,
+			}
 
 
-			});
+		});
 
-			return {output: "Account Created"};
+		return {output: "Account Created"};
 	}
 
 }
