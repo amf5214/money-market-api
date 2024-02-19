@@ -38,7 +38,10 @@ export class AuthService {
 		};
 	}
 
+	// Service to handle sign in attempts
 	async signin(dto:AuthDto) {
+
+		// Grab AuthAccount from database using unique email from dto
 		const auth = await this.prisma.authAccount.findUnique({
 			where: {
 				email: dto.email,
@@ -50,16 +53,21 @@ export class AuthService {
 			},
 		})
 
+		// Check if an AuthAccount object was found under the provided email
+		// If no account found return 403 error
 		if(!auth) {
 			throw new ForbiddenException("Incorrect Credentials");
 		}
 		
+		// Verify that the password provided is correct
 		const testPassword = await argon.verify(auth.hash, dto.password);
 
+		// If incorrect password is given then return 403 error
 		if(!testPassword) {
 			throw new ForbiddenException("Incorrect Credentials");
 		}
 
+		// If the account sign in attempt was authenticated then return a jwt barer token
 		return this.signToken(auth.id, auth.email);
 	}
 
