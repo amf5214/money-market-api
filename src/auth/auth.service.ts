@@ -71,14 +71,15 @@ export class AuthService {
 		return this.signToken(auth.id, auth.email);
 	}
 
-
+	// Service to handle sign up attempts
 	async signup(dto:AuthDto) {
 
+		// Hash the provided password for secure storage
 		const hash = await argon.hash(dto.password);
 
 		try {
 		
-
+			// Create an AuthAccount object for the new user
 			const auth = await this.prisma.authAccount.create({
 				data: {
 					email: dto.email,
@@ -90,6 +91,7 @@ export class AuthService {
 
 			});
 
+			// Create a User object for the new user
 			const user = await this.prisma.user.create({
 				data: {
 					authAccountId: auth.id,
@@ -98,13 +100,19 @@ export class AuthService {
 
 			});
 
+			// If the account details provided are valid return account created
 			return {output: "Account Created"};
+
 		} catch(error) {
+
+			// If an error was raised check if it is a database error due to a 
+			// non unique email address field
 			if(error instanceof Prisma.PrismaClientKnownRequestError) {
 				if(error.code == 'P2002') {
 					throw new ForbiddenException('Credentials already taken');
 				}
 			}
+			// If there was another error just throw it to the client
 			throw error;
 		}
 
