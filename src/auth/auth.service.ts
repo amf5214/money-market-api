@@ -21,27 +21,41 @@ export class AuthService {
 
 
 	async signup(dto:AuthDto) {
+
 		const hash = await argon.hash(dto.password);
-		const auth = await this.prisma.authAccount.create({
-			data: {
-				email: dto.email,
-				hash: hash,
-			},
-			select: {
-				id:true
+
+		try {
+		
+
+			const auth = await this.prisma.authAccount.create({
+				data: {
+					email: dto.email,
+					hash: hash,
+				},
+				select: {
+					id:true
+				}
+
+			});
+
+			const user = await this.prisma.user.create({
+				data: {
+					authAccountId: auth.id,
+				}
+
+
+			});
+
+			return {output: "Account Created"};
+		} catch(error) {
+			if(error instanceof Prisma.PrismaClientKnownRequestError) {
+				if(error.code == 'P2002') {
+					throw new ForbiddenException('Credentials already taken');
+				}
 			}
+			throw error;
+		}
 
-		});
-
-		const user = await this.prisma.user.create({
-			data: {
-				authAccountId: auth.id,
-			}
-
-
-		});
-
-		return {output: "Account Created"};
 	}
 
 }
