@@ -9,6 +9,7 @@ import { User, Prisma, AuthAccount } from '@prisma/client';
 
 @Injectable({})
 export class AuthService {
+	// Constructor function that specifies dependencies for DI
 	constructor(
 		private prisma:PrismaService,
 		private jwt:JwtService,
