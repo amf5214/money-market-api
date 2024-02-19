@@ -12,6 +12,8 @@ import { User, Prisma, AuthAccount } from '@prisma/client';
 export class AuthService {
 	constructor(
 		private prisma:PrismaService,
+		private jwt:JwtService,
+		private config:ConfigService,
 		) {}
 
 	async signin(dto:AuthDto) {
