@@ -16,14 +16,18 @@ export class AuthService {
 		private config:ConfigService,
 		) {}
 
+	// Function to sign jwt tokens 
 	async signToken(id:number, email:string) {
+		// Construct payload for jwt
 		const data = {
 			sub:id,
 			email:email,
 		}
 
+		// Retrieve secret key from the environment variables
 		const secret = this.config.get('JWT_SECRET');
 
+		// Create jwt bare token using secret key and payload
 		const token = await this.jwt.signAsync(data, {
 			expiresIn:'30m',
 			secret:secret,
