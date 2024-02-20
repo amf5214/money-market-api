@@ -8,11 +8,11 @@ export class LearnService {
 		return {message:''};
 	}
 
-	loadseries(seriesId:number) {
+	seriesload(seriesId:number) {
 		return {message:''};
 	}
 
-	loadpage(pageId:number) {
+	pageload(pageId:number) {
 		return {message:''};
 	}
 }
