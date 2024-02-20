@@ -8,6 +8,9 @@ async function bootstrap() {
   // Function to create the nest application object
   const app = await NestFactory.create(AppModule);
 
+  // Enables cors which is a cross site tracking enablement service
+  app.enableCors();
+
   // Adds validation pipe which validates dto objects before allowing them to be routed
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
