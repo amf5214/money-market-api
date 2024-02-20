@@ -5,4 +5,8 @@ import { LearnService } from './learn.service';
 
 @UseGuards(JwtGuard)
 @Controller('learn')
-export class LearnController {}
+export class LearnController {
+	constructor(private learnService: LearnService) {}
+
+
+}
