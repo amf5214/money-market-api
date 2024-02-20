@@ -10,17 +10,17 @@ export class LearnController {
 
 	@Get('home')
 	home() {
-		return {message: 'This is a test path for home service. Request=/learn/home'};
+		return learnService.home();
 	}
 
 	@Get('series/:id')
 	seriesload(@Param() params: any) {
-		return {message: `This is a test path for series service. Request=/learn/series/${params.id}`};
+		return learnService.seriesload(params.id);
 	}
 
 	@Get('page/:id')
 	pageload(@Param() params: any) {
-		return {message: `This is a test path for page service. Request=/learn/page/${params.id}`};
+		return learnService.pageload(params.id);
 	}
 
 
