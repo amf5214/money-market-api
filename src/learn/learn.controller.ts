@@ -10,17 +10,17 @@ export class LearnController {
 
 	@Get('home')
 	home() {
-		return learnService.home();
+		return this.learnService.home();
 	}
 
 	@Get('series/:id')
 	seriesload(@Param() params: any) {
-		return learnService.seriesload(params.id);
+		return this.learnService.seriesload(params.id);
 	}
 
 	@Get('page/:id')
 	pageload(@Param() params: any) {
-		return learnService.pageload(params.id);
+		return this.learnService.pageload(params.id);
 	}
 
 
