@@ -7,6 +7,7 @@ import { ProfileModule } from './profile/profile.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { LearnModule } from './learn/learn.module';
+import { ContentmanagementModule } from './contentmanagement/contentmanagement.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { LearnModule } from './learn/learn.module';
       isGlobal: true,
     }),
     LearnModule,
+    ContentmanagementModule,
   ],
   controllers: [],
   providers: [],
