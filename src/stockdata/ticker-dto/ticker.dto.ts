@@ -10,15 +10,15 @@ export class TickerDto {
 	@IsNotEmpty()
 	timeSpan:string;
 
-	@IsDate()
+	@IsString()
 	@IsNotEmpty()
-	startDate:Date;
+	startDate:string;
 
-	@IsDate()
+	@IsString()
 	@IsNotEmpty()
-	endDate:Date;
+	endDate:string;
 
-	@IsInt()
+	@IsString()
 	@IsNotEmpty()
-	limit:number;
+	limit:string;
 }
