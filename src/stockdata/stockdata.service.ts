@@ -30,4 +30,11 @@ export class StockdataService {
 		};	
 	}
 
+	async tickerfinancials(dto:FinancialsDto): Promise<any> {
+		const basePath = 'https://api.polygon.io/vX/reference/financials';
+		const observable = this.httpService.get(`${basePath}?ticker=${dto.tickerName}&apiKey=${this.config.get('POLYGON_API_TOKEN')}`);
+		const response = await firstValueFrom(observable); 
+		return response.data;
+	};
+
 }
