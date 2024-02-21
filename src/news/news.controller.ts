@@ -13,5 +13,10 @@ export class NewsController {
 	tickernews(dto:NewsDto) {
 		return this.newsService.tickernews(dto);
 	}
+
+	@Post('market-news')
+	marketnews(dto:NewsDto) {
+		return this.newsService.marketnews(dto);
+	}
 }
 
