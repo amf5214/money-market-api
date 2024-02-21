@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsDate, IsInt } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsDate, IsInt, IsOptional } from 'class-validator';
 
 export class FinancialsDto {
 
@@ -7,6 +7,6 @@ export class FinancialsDto {
 	tickerName:string;
 
 	@IsDate()
-	@IsNotEmpty()
-	filingData:Date;
+	@IsOptional()
+	filingDate:Date;
 }
