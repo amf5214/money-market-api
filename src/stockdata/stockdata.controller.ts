@@ -19,6 +19,8 @@ export class StockdataController {
 		return this.stockdataService.marketstatus();
 	}
 
-
+	@Post('financials')
+	tickerfinancials(@Body() dto:FinancialsDto) {
+		return this.stockdataService.tickerfinancials(dto);
 	}
 }
