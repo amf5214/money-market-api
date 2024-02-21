@@ -8,5 +8,10 @@ import { NewsDto } from './news-dto';
 @Controller('news')
 export class NewsController {
 	constructor(private newsService:NewsService) {}
+
+	@Post('ticker-news')
+	tickernews(dto:NewsDto) {
+		return this.newsService.tickernews(dto);
+	}
 }
 
