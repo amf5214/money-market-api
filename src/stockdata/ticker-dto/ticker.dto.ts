@@ -19,5 +19,6 @@ export class TickerDto {
 	endDate:Date;
 
 	@IsInt()
+	@IsNotEmpty()
 	limit:number;
 }
