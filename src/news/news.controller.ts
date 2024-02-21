@@ -4,6 +4,7 @@ import { JwtGuard } from '../auth/guard';
 import { NewsService } from './news.service';
 import { NewsDto } from './news-dto';
 
+@UseGuards(JwtGuard)
 @Controller('news')
 export class NewsController {
 }
