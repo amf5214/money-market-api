@@ -7,5 +7,6 @@ import { NewsDto } from './news-dto';
 @UseGuards(JwtGuard)
 @Controller('news')
 export class NewsController {
+	constructor(private newsService:NewsService) {}
 }
 
