@@ -11,4 +11,11 @@ export class StockdataService {
 		private readonly httpService: HttpService,
 		private config:ConfigService,
 		) {}
+
+	async tickerdata(dto:TickerDto) {
+		const basePath = `https://api.polygon.io/v2/aggs/ticker/${dto.tickerName}/range/1/${dto.timeSpan}/${dto.startDate}/${dto.endDate}?adjusted=true&sort=asc&limit=${dto.limit}&apiKey=${this.config.get('POLYGON_API_TOKEN')}`;
+		const observable = this.httpService.get(basePath);
+		const response = await firstValueFrom(observable); 
+		return response.data;
+	}
 }
