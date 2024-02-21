@@ -7,10 +7,11 @@ import { StockdataService } from './stockdata.service';
 @UseGuards(JwtGuard)
 @Controller('stockdata')
 export class StockdataController {
-	@Post('ticker')
-	tickerdata(dto:TickerDto) {
 	constructor(private stockdataService:StockdataService) {}
 
+	@Post('ticker')
+	tickerdata(@Body() dto:TickerDto) {
+		return this.stockdataService.tickerdata(dto);
 	}
 
 	@Get('market-status')
