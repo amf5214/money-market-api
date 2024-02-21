@@ -10,6 +10,13 @@ export class NewsService {
 		private config:ConfigService,
 	) {}
 
+	tickernews(dto:NewsDto) {
+		return 'Test Path';
+	}
+
+	marketnews(dto:NewsDto) {
+		return 'Test Path';
+	}
 }
 
 
