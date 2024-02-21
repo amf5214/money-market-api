@@ -9,6 +9,7 @@ import { StockdataService } from './stockdata.service';
 export class StockdataController {
 	@Post('ticker')
 	tickerdata(dto:TickerDto) {
+	constructor(private stockdataService:StockdataService) {}
 
 	}
 
