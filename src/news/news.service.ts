@@ -5,6 +5,11 @@ import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class NewsService {
+	constructor(
+		private readonly httpService: HttpService,
+		private config:ConfigService,
+	) {}
+
 }
 
 
