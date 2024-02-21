@@ -6,6 +6,9 @@ import { ForbiddenException } from '@nestjs/common';
 import { AuthDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { User, Prisma, AuthAccount } from '@prisma/client';
+import { MongodbService } from '../mongodb/mongodb.service';
+import { CreateProfileDto } from '../mongodb/profile/create-profile-dto';
+import { ProfileService } from '../mongodb/profile/profile.service';
 
 @Injectable({})
 export class AuthService {
@@ -14,6 +17,7 @@ export class AuthService {
 		private prisma:PrismaService,
 		private jwt:JwtService,
 		private config:ConfigService,
+		private mongodb:MongodbService,
 		) {}
 
 	// Function to sign jwt tokens 
@@ -96,9 +100,10 @@ export class AuthService {
 				data: {
 					authAccountId: auth.id,
 				}
-
-
 			});
+
+			this.mongodb.profile().createOne(new CreateProfileDto());
+
 
 			// If the account details provided are valid return account created
 			return {output: "Account Created"};

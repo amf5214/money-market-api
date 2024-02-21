@@ -8,6 +8,9 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { LearnModule } from './learn/learn.module';
 import { ContentmanagementModule } from './contentmanagement/contentmanagement.module';
+import { MongodbModule } from './mongodb/mongodb.module';
+import { Profile } from './mongodb/entities/profile.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -20,8 +23,17 @@ import { ContentmanagementModule } from './contentmanagement/contentmanagement.m
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      host: 'localhost',
+      port: 27017,
+      database: 'MoneyMarket_Prod',
+      entities: [Profile],
+      synchronize: false,
+    }),
     LearnModule,
     ContentmanagementModule,
+    MongodbModule,
   ],
   controllers: [],
   providers: [],
