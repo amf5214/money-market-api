@@ -18,4 +18,16 @@ export class StockdataService {
 		const response = await firstValueFrom(observable); 
 		return response.data;
 	}
+
+	async marketstatus(): Promise<any> {
+		const basePath = 'https://api.polygon.io/v1/marketstatus/now';
+		const observable = this.httpService.get(`${basePath}?apiKey=${this.config.get('POLYGON_API_TOKEN')}`);
+		const response = await firstValueFrom(observable);  
+ 		return {
+			status: response.data.market,
+			exchanges: response.data.exchanges,
+			serverTime: response.data.serverTime,
+		};	
+	}
+
 }
