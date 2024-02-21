@@ -7,4 +7,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class StockdataService {
+	constructor(
+		private readonly httpService: HttpService,
+		private config:ConfigService,
+		) {}
 }
