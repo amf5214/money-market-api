@@ -1,1 +1,1 @@
-export * from 'ticker.dto';
+export * from './ticker.dto';
