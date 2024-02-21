@@ -9,12 +9,12 @@ export class NewsController {
 	constructor(private newsService:NewsService) {}
 
 	@Post('ticker-news')
-	tickernews(dto:NewsDto) {
+	tickernews(@Body() dto:NewsDto) {
 		return this.newsService.tickernews(dto);
 	}
 
 	@Post('market-news')
-	marketnews(dto:NewsDto) {
+	marketnews(@Body() dto:NewsDto) {
 		return this.newsService.marketnews(dto);
 	}
 }
