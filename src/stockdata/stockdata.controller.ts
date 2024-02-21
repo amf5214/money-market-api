@@ -16,7 +16,7 @@ export class StockdataController {
 
 	@Get('market-status')
 	marketstatus() {
-
+		return this.stockdataService.marketstatus();
 	}
 
 
