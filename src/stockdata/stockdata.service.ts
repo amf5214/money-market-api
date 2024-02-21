@@ -6,6 +6,5 @@ import { FinancialsDto } from './financials-dto';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable()
-export class StockdataService {}
 export class StockdataService {
 }
