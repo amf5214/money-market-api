@@ -3,5 +3,6 @@ import { JwtGuard } from '../auth/guard';
 import { CreateProfileDto } from '../mongodb/profile/create-profile-dto';
 import { ProfileService } from './profile.service';
 
+@UseGuards(JwtGuard)
 @Controller('profile')
 export class ProfileController {}
