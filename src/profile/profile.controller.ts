@@ -5,4 +5,8 @@ import { ProfileService } from './profile.service';
 
 @UseGuards(JwtGuard)
 @Controller('profile')
-export class ProfileController {}
+export class ProfileController {
+	constructor(
+		private profileService:ProfileService,
+	) {}
+}
