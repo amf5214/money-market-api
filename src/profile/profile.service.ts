@@ -11,4 +11,23 @@ export class ProfileService {
 		private mongodb:MongodbService
 	) {}
 
+	async createone(dto:CreateProfileDto) {
+    	await this.mongodb.profile().createOne(dto);
+    }
+
+	async editone(id:number, dto:CreateProfileDto) {
+		await this.mongodb.profile().editOne(id, dto);
+	}
+
+	findall(): Promise<Profile[]> {
+		return this.mongodb.profile().findAll();
+	}
+
+	findone(id: number): Promise<Profile | null> {
+		return this.mongodb.profile().findOne(id);
+	}
+
+	async remove(id: number){
+		await this.mongodb.profile().remove(id);
+	}
 }
