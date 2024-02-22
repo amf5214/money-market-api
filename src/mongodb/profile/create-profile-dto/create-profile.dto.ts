@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsNumber, IsOptional } from 'class-validator';
 
 // Creates a data transfer object (DTO) for sign in and sign up
 // DTO will verify that an email object stored as a string 
@@ -6,27 +6,35 @@ import { IsEmail, IsNotEmpty, IsString, IsNumber } from 'class-validator';
 export class CreateProfileDto {
 
 	@IsString()
-	@IsNotEmpty()
+	@IsOptional()
 	name:string;
 
 	@IsString()
-	@IsNotEmpty()
+	@IsOptional()
 	bio:string;
 
 	@IsNumber()
-	@IsNotEmpty()
+	@IsOptional()
 	age:number;
 
 	@IsString()
-	@IsNotEmpty()
+	@IsOptional()
 	experience:string;
 
 	@IsString()
-	@IsNotEmpty()
+	@IsOptional()
 	citystate:string;
 
 	@IsString()
-	@IsNotEmpty()
+	@IsOptional()
 	education:string;
+
+	@IsEmail()
+	@IsNotEmpty()
+	email:string;
+
+	@IsNumber()
+	@IsNotEmpty()
+	authAccountId:number;
 
 }
