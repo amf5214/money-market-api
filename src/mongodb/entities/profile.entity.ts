@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ObjectIdColumn, Unique } from 'typeorm';
+import { ObjectId, Entity, Column, PrimaryGeneratedColumn, OneToMany, ObjectIdColumn, Unique } from 'typeorm';
 
 @Entity()
 export class Profile {
   @ObjectIdColumn()
-  id: number;
+  id: ObjectId;
 
   @Column()
   name: string;

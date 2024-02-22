@@ -30,11 +30,11 @@ export class CreateProfileDto {
 	education:string;
 
 	@IsEmail()
-	@IsNotEmpty()
+	@IsOptional()
 	email:string;
 
 	@IsNumber()
-	@IsNotEmpty()
+	@IsOptional()
 	authAccountId:number;
 
 }
