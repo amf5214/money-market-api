@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Profile } from '../entities/profile.entity';
 import { CreateProfileDto } from './create-profile-dto';
+import { ObjectId } from 'typeorm';
 
 @Injectable()
 export class ProfileService {
@@ -18,7 +19,7 @@ export class ProfileService {
     await this.profilesRepository.save(newProfile);
   }
 
-  async editOne(id:number, dto:CreateProfileDto) {
+  async editOne(id:ObjectId, dto:CreateProfileDto) {
     await this.profilesRepository.update(id, dto);
   }
 
@@ -26,11 +27,11 @@ export class ProfileService {
     return this.profilesRepository.find();
   }
 
-  findOne(id: number): Promise<Profile | null> {
+  findOne(id: ObjectId): Promise<Profile | null> {
     return this.profilesRepository.findOneBy({ id });
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: ObjectId): Promise<void> {
     await this.profilesRepository.delete(id);
   }
 }
