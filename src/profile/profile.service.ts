@@ -6,4 +6,9 @@ import { Profile } from '../mongodb/entities/profile.entity';
 
 
 @Injectable()
-export class ProfileService {}
+export class ProfileService {
+	constructor(
+		private mongodb:MongodbService
+	) {}
+
+}
