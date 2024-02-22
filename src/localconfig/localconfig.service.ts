@@ -15,4 +15,23 @@ export class LocalConfigService {
     return this.envConfig[key];
   }
 
+  getMongoDBHost(): string {
+    return this.envConfig['MONGODB_HOST'];
+  }
+
+  getMongoDBPort(): number {
+    return Number(this.envConfig['MONGODB_PORT']);
+  }
+
+  getMongoDBUser(): string {
+    return this.envConfig['MONGODB_USERNAME'];
+  }
+
+  getMongoDBPassword(): string {
+    return this.envConfig['MONGODB_PASSWORD'];
+  }
+
+  getMongoDBName(): string {
+    return this.envConfig['MONGODB_DATABASE'];
+  }
 }
