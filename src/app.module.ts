@@ -13,6 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LocalConfigModule } from './localconfig/localconfig.module';
 import { LocalConfigService } from './localconfig/localconfig.service';
 import { ConfigModule } from '@nestjs/config';
+import { SubscriptionModule } from './subscription/subscription.module';
 
 
 @Module({
@@ -42,6 +43,7 @@ import { ConfigModule } from '@nestjs/config';
       }),
       inject: [LocalConfigService],
     }),
+    SubscriptionModule,
   ],
   controllers: [],
   providers: [],
