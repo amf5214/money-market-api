@@ -102,7 +102,10 @@ export class AuthService {
 				}
 			});
 
-			this.mongodb.profile().createOne(new CreateProfileDto());
+			let newProfileDto = new CreateProfileDto();
+			newProfileDto.authAccountId = auth.id;
+			newProfileDto.email = dto.email;
+			this.mongodb.profile().createOne(newProfileDto);
 
 
 			// If the account details provided are valid return account created

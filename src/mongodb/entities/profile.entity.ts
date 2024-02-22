@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ObjectIdColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ObjectIdColumn, Unique } from 'typeorm';
 
 @Entity()
 export class Profile {
@@ -22,4 +22,10 @@ export class Profile {
 
   @Column()
   education: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  authAccountId: number;
 }

@@ -5,12 +5,15 @@ import { NewsModule } from './news/news.module';
 import { StockdataModule } from './stockdata/stockdata.module';
 import { ProfileModule } from './profile/profile.module';
 import { PrismaModule } from './prisma/prisma.module';
-import { ConfigModule } from '@nestjs/config';
 import { LearnModule } from './learn/learn.module';
 import { ContentmanagementModule } from './contentmanagement/contentmanagement.module';
 import { MongodbModule } from './mongodb/mongodb.module';
 import { Profile } from './mongodb/entities/profile.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LocalConfigModule } from './localconfig/localconfig.module';
+import { LocalConfigService } from './localconfig/localconfig.service';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
@@ -20,23 +23,29 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     StockdataModule, 
     ProfileModule, 
     PrismaModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      host: 'localhost',
-      port: 27017,
-      database: 'MoneyMarket_Prod',
-      entities: [Profile],
-      synchronize: false,
-    }),
     LearnModule,
     ContentmanagementModule,
     MongodbModule,
+    LocalConfigModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [LocalConfigModule],
+      useFactory: async (localConfigService: LocalConfigService) => ({
+        type: 'mongodb',
+        host: localConfigService.getMongoDBHost(),
+        port: localConfigService.getMongoDBPort(),
+        database: localConfigService.getMongoDBName(),
+        entities: [Profile],
+        synchronize: true,
+      }),
+      inject: [LocalConfigService],
+    }),
   ],
   controllers: [],
   providers: [],
 })
 
 export class AppModule {}
+

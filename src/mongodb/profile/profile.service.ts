@@ -12,7 +12,9 @@ export class ProfileService {
   ) {}
 
   async createOne(dto:CreateProfileDto) {
-    const newProfile:Profile = new Profile();    
+    const newProfile:Profile = new Profile(); 
+    newProfile.email = dto.email;
+    newProfile.authAccountId = dto.authAccountId;   
     this.profilesRepository.save(newProfile);
   }
 
