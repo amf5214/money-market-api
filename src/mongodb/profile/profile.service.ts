@@ -15,11 +15,11 @@ export class ProfileService {
     const newProfile:Profile = new Profile(); 
     newProfile.email = dto.email;
     newProfile.authAccountId = dto.authAccountId;   
-    this.profilesRepository.save(newProfile);
+    await this.profilesRepository.save(newProfile);
   }
 
   async editOne(id:number, dto:CreateProfileDto) {
-    this.profilesRepository.update(id, dto);
+    await this.profilesRepository.update(id, dto);
   }
 
   findAll(): Promise<Profile[]> {
