@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ObjectIdColumn } from 'typeorm';
+import { Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class LearnPage {
