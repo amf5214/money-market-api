@@ -1,14 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import * as argon from 'argon2';
+import { Injectable, ForbiddenException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config';
-import { ForbiddenException } from '@nestjs/common';
+
+import * as argon from 'argon2';
+
 import { AuthDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
-import { User, Prisma, AuthAccount } from '@prisma/client';
 import { MongodbService } from '../mongodb/mongodb.service';
 import { CreateProfileDto } from '../mongodb/profile/create-profile-dto';
-import { ProfileService } from '../mongodb/profile/profile.service';
 
 @Injectable({})
 export class AuthService {
@@ -18,7 +18,7 @@ export class AuthService {
 		private jwt:JwtService,
 		private config:ConfigService,
 		private mongodb:MongodbService,
-		) {}
+	) {}
 
 	// Function to sign jwt tokens 
 	async signToken(id:number, email:string) {
