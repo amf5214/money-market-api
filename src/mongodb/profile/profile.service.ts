@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ObjectId } from 'typeorm';
 
 import { Profile } from '../entities/profile.entity';
-import { CreateProfileDto } from './create-profile-dto';
+import { ProfileDto } from './dto';
 
 @Injectable()
 export class ProfileService {
@@ -13,14 +13,14 @@ export class ProfileService {
     private profilesRepository: Repository<Profile>,
   ) {}
 
-  async createOne(dto:CreateProfileDto) {
+  async createOne(dto:ProfileDto) {
     const newProfile:Profile = new Profile(); 
     newProfile.email = dto.email;
     newProfile.authAccountId = dto.authAccountId;   
     await this.profilesRepository.save(newProfile);
   }
 
-  async editOne(id:ObjectId, dto:CreateProfileDto) {
+  async editOne(id:ObjectId, dto:ProfileDto) {
     await this.profilesRepository.update(id, dto);
   }
 

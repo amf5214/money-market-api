@@ -1,7 +1,7 @@
 import { Controller, Body, Post, Get, UseGuards, Param, Patch } from '@nestjs/common';
 import { JwtGuard } from '../auth/guard';
-import { ProfileDto } from './dto';
-import { ProfileService } from './profile.service';
+import { ProfileDto } from '../mongodb/profile/dto';
+import { ProfileService } from '../mongodb/profile';
 
 @UseGuards(JwtGuard)
 @Controller('profile')
@@ -12,22 +12,22 @@ export class ProfileController {
 
 	@Post('create')
 	async createone(@Body() dto:ProfileDto) {
-		return this.profileService.createone(dto);
+		return this.profileService.createOne(dto);
 	}
 
 	@Patch('update/:id')
 	async editone(@Body() dto:ProfileDto, @Param() params:any) {
-		return this.profileService.editone(params.id, dto);
+		return this.profileService.editOne(params.id, dto);
 	}
 
 	@Get('showall')
 	findall() {
-		return this.profileService.findall();
+		return this.profileService.findAll();
 	}
 
 	@Get(':id')
 	findone(@Param() params:any) {
-		return this.profileService.findone(params.id);
+		return this.profileService.findOne(params.id);
 	}
 
 	@Get('remove/:id')

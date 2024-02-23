@@ -7,8 +7,8 @@ import * as argon from 'argon2';
 
 import { AuthDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
-import { MongodbService } from '../mongodb/mongodb.service';
-import { CreateProfileDto } from '../mongodb/profile/create-profile-dto';
+import { ProfileService } from '../mongodb/profile';
+import { ProfileDto } from '../mongodb/profile/dto';
 
 @Injectable({})
 export class AuthService {
@@ -17,7 +17,7 @@ export class AuthService {
 		private prisma:PrismaService,
 		private jwt:JwtService,
 		private config:ConfigService,
-		private mongodb:MongodbService,
+		private profileService:ProfileService,
 	) {}
 
 	// Function to sign jwt tokens 
@@ -102,10 +102,10 @@ export class AuthService {
 				}
 			});
 
-			let newProfileDto = new CreateProfileDto();
+			let newProfileDto = new ProfileDto();
 			newProfileDto.authAccountId = auth.id;
 			newProfileDto.email = dto.email;
-			this.mongodb.profile().createOne(newProfileDto);
+			this.profileService.createOne(newProfileDto);
 
 
 			// If the account details provided are valid return account created
