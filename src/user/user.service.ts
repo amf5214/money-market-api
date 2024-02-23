@@ -24,7 +24,14 @@ export class UserService {
     }
 
     updateuser(dto:UpdateUserDto) {
-        return '';
+        return this.prisma.user.update({
+            where: {
+                id: dto.id,
+            },
+            data: {
+                ...dto,
+            }
+        });
     }
 
     async createuser(dto:CreateUserDto) {
