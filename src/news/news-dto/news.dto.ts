@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsDate, IsInt, IsOptional, Validate } from 'class-validator';
+import { IsString, IsInt, IsOptional, Validate } from 'class-validator';
 import { ValidLanguageRule } from '../validlanguage-rule';
 import { ValidCountryRule } from '../validcountry-rule';
 
