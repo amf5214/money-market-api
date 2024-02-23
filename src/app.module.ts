@@ -15,6 +15,7 @@ import { LocalConfigService } from './localconfig/localconfig.service';
 import { ConfigModule } from '@nestjs/config';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { PaymentModule } from './payment/payment.module';
+import { CaslModule } from './casl/casl.module';
 
 
 @Module({
@@ -46,6 +47,7 @@ import { PaymentModule } from './payment/payment.module';
     }),
     SubscriptionModule,
     PaymentModule,
+    CaslModule,
   ],
   controllers: [],
   providers: [],
