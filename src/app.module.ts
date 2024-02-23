@@ -14,6 +14,7 @@ import { LocalConfigModule } from './localconfig/localconfig.module';
 import { LocalConfigService } from './localconfig/localconfig.service';
 import { ConfigModule } from '@nestjs/config';
 import { SubscriptionModule } from './subscription/subscription.module';
+import { PaymentModule } from './payment/payment.module';
 
 
 @Module({
@@ -44,6 +45,7 @@ import { SubscriptionModule } from './subscription/subscription.module';
       inject: [LocalConfigService],
     }),
     SubscriptionModule,
+    PaymentModule,
   ],
   controllers: [],
   providers: [],
