@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MongodbService } from '../mongodb/mongodb.service';
-import { CreateProfileDto } from '../mongodb/profile/create-profile-dto';
+import { ProfileDto } from './dto';
 import { Profile } from '../mongodb/entities/profile.entity';
 import { ObjectId } from 'typeorm';
 
@@ -10,11 +10,11 @@ export class ProfileService {
 		private mongodb:MongodbService
 	) {}
 
-	async createone(dto:CreateProfileDto) {
+	async createone(dto:ProfileDto) {
     	await this.mongodb.profile().createOne(dto);
     }
 
-	async editone(id:ObjectId, dto:CreateProfileDto) {
+	async editone(id:ObjectId, dto:ProfileDto) {
 		await this.mongodb.profile().editOne(id, dto);
 	}
 
