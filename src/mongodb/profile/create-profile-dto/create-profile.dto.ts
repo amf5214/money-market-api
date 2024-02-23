@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsNumber, IsOptional } from 'class-validator';
+import { IsEmail, IsString, IsNumber, IsOptional } from 'class-validator';
 
 // Creates a data transfer object (DTO) for sign in and sign up
 // DTO will verify that an email object stored as a string 

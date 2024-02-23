@@ -1,4 +1,4 @@
-import { ObjectId, Entity, Column, PrimaryGeneratedColumn, OneToMany, ObjectIdColumn, Unique } from 'typeorm';
+import { ObjectId, Entity, Column, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class Profile {
