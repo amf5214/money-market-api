@@ -8,15 +8,34 @@ import { UpdateUserDto } from './update-user-dto';
 export class UserService {
     constructor(private prisma:PrismaService) {}
 
-    getuser(id:number) {
-        return '';
+    async getuser(id:number) {
+        const user = await this.prisma.user.findUnique({
+			where: {
+				id: id,
+			},
+			select: {
+				id:true,
+                authAccountId:true,
+                firstName:true,
+                lastName:true,
+			},
+		})
+        return user;
     }
 
     updateuser(dto:UpdateUserDto) {
         return '';
     }
 
-    createuser(dto:CreateUserDto) {
-        return '';
+    async createuser(dto:CreateUserDto) {
+        const user = await this.prisma.user.create({
+            data: {
+                authAccountId: dto.authAccountId,
+            },
+            select: {
+                id:true,
+            }
+        });
+        return user;
     }
 }
