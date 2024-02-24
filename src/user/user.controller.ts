@@ -12,7 +12,7 @@ export class UserController {
 
     @Get(':id')
     getuser(@Param() params:any) {
-        return this.userService.getuser(params.id);
+        return this.userService.getuser(Number(params.id));
     }
 
     @Patch('update')
