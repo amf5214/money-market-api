@@ -27,12 +27,13 @@ export class SubscriptionController {
     }
 
     @Get(':id')
-    getSubscription(@Param() params:any) {
-        return this.subscriptionService.findOne(Number(params.id));
+    getSubscription(@GetAuthAccount() authAccount:AuthAccount, @Param() params:any) {
+        return this.subscriptionService.findOne(Number(authAccount.id), Number(params.id));
     }
 
-    @Get('')
+    @Get()
     getUserSubscriptions(@GetAuthAccount() authAccount:AuthAccount) {
-        return this.subscriptionService.findUserSubscriptions(authAccount.id);
+        console.log(authAccount);
+        return this.subscriptionService.findUserSubscriptions(Number(authAccount.id));
     }
 }
