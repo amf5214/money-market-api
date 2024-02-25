@@ -17,8 +17,26 @@ export class SubscriptionService {
     async remove(id:number) {
     }
     async findOne(id:number) {
+        const subscription = await this.prisma.subscription.findUnique({
+            where: {
+                id:id,
+            },
+        });
+        return subscription;
     }
+
     async findUserSubscriptions(id:number) {
+        const user:User = await this.prisma.user.findFirst({
+			where: {
+				authAccountId: id,
+			},
+		})
+        const subscriptions = await this.prisma.subscription.findAll({
+            where: {
+                userId:user.id,
+            },
+        });
+        return subscriptions;
     }
 
     async update(id:number, dto:SubscriptionDto) {
