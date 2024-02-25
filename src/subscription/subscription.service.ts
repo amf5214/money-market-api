@@ -37,9 +37,6 @@ export class SubscriptionService {
     }
 
     async create(authId:number, dto:SubscriptionDto) {
-        if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
-            return new ForbiddenException('Trying to access a subscription for another user');
-        }
         return this.prisma.subscription.create({
             data: {
                 ...dto,
