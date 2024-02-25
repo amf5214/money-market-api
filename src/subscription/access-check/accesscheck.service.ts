@@ -6,7 +6,7 @@ import { CaslAbilityFactory } from "src/casl/casl-ability.factory";
 import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
-export class CheckUserAccess {
+export class SubscriptionAccessService {
     constructor(
         private prisma:PrismaService,
         private casl:CaslAbilityFactory
