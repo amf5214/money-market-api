@@ -59,7 +59,11 @@ export class SubscriptionService {
         return true;
     }
 
-    async findOne(id:number) {
+    async findOne(authAccountId:number, id:number) {
+        if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
+            return new ForbiddenException('Trying to access a subscription for another user');
+        }
+
         const subscription = await this.prisma.subscription.findUnique({
             where: {
                 id:id,
