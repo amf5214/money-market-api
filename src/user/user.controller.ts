@@ -15,11 +15,6 @@ import { Action } from 'src/casl/action.enum';
 export class UserController {
     constructor(private userService:UserService) {}
 
-    @Get(':id')
-    getuser(@Param() params:any) {
-        return this.userService.getuser(Number(params.id));
-    }
-
     @Patch('update/:id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, 'User'))
@@ -30,5 +25,10 @@ export class UserController {
     @Post('create')
     createaccount(@Body() dto:CreateUserDto) {
         return this.userService.createuser(dto);
+    @Get(':id')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, 'User'))
+    getuser(@Param() params:any) {
+        return this.userService.getuser(Number(params.id));
     }
 }
