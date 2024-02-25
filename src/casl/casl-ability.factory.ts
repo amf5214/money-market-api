@@ -7,7 +7,7 @@ import { Action } from './action.enum';
 
 type PrismaSubjects = Subjects<{User: User, AuthAccount: AuthAccount, Subscription:Subscription, LearningSeries:LearningSeries}> | 'all';
 
-type AppAbility = PureAbility<[Action, PrismaSubjects], PrismaQuery>;
+export type AppAbility = PureAbility<[Action, PrismaSubjects], PrismaQuery>;
 
 enum Role {
     USER = 'USER',
