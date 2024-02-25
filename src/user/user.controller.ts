@@ -23,8 +23,12 @@ export class UserController {
     }
 
     @Post('create')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.Manage, 'User'))
     createaccount(@Body() dto:CreateUserDto) {
-        return this.userService.createuser(dto);
+        return this.userService.createuser(Number(dto.authAccountId));
+    }
+
     @Get(':id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, 'User'))
