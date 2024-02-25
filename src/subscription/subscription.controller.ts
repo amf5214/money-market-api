@@ -6,4 +6,6 @@ import { GetAuthAccount } from 'src/auth/decorator';
 import { SubscriptionDto } from './dto';
 
 @Controller('subscription')
-export class SubscriptionController {}
+export class SubscriptionController {
+    constructor(private subscriptionService:SubscriptionService) {}
+}
