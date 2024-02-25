@@ -5,7 +5,6 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { SubscriptionDto } from './dto';
 
 @Injectable()
-export class SubscriptionService {}
 export class SubscriptionService {
     constructor(private prisma:PrismaService) {}
 
@@ -19,10 +18,10 @@ export class SubscriptionService {
         return true;
     }
 
-    async create(id:number, dto:SubscriptionDto) {
+    async create(authId:number, dto:SubscriptionDto) {
         const user:User = await this.prisma.user.findFirst({
 			where: {
-				authAccountId: id,
+				authAccountId: authId,
 			},
 		})
         if(dto.userId != user.id) {
@@ -49,10 +48,10 @@ export class SubscriptionService {
         return subscription;
     }
 
-    async findUserSubscriptions(id:number) {
+    async findUserSubscriptions(authId:number) {
         const user:User = await this.prisma.user.findFirst({
 			where: {
-				authAccountId: id,
+				authAccountId: authId,
 			},
 		})
         const subscriptions = await this.prisma.subscription.findAll({
@@ -63,10 +62,10 @@ export class SubscriptionService {
         return subscriptions;
     }
 
-    async update(id:number, dto:SubscriptionDto) {
+    async update(authId:number, dto:SubscriptionDto) {
         const user:User = await this.prisma.user.findFirst({
 			where: {
-				authAccountId: id,
+				authAccountId: authId,
 			},
 		})
         if(dto.userId != user.id) {
