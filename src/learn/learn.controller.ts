@@ -16,12 +16,12 @@ export class LearnController {
 
 	@Get('series/:id')
 	seriesload(@Param() params: any) {
-		return this.learnService.seriesload(params.id);
+		return this.learnService.seriesload(Number(params.id));
 	}
 
 	@Get('page/:id')
 	pageload(@Param() params: any) {
-		return this.learnService.pageload(params.id);
+		return this.learnService.pageload(Number(params.id));
 	}
 
 

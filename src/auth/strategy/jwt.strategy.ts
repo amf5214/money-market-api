@@ -9,7 +9,7 @@ import { PrismaService } from '../../prisma/prisma.service';
 
 // Class to handle jwt objects
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 	// Constructor function that specifies dependencies for DI
 	constructor(
 		private jwt:JwtService,
@@ -33,12 +33,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		const auth = await this.prisma.authAccount.findUnique({
 			where: {
 				id:payload.sub,
-			}
+			},
+			select: {
+				id:true,
+				email:true,
+				users:true,
+			},
 		})
-
-		// Deleting hash attribute from the object so that the password hash is not sent with 
-		// the response
-		delete auth.hash;
 
 		return auth;
 	}
