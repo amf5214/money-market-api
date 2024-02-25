@@ -90,6 +90,14 @@ export class SubscriptionService {
         if(dto.userId != user.id) {
             return new ForbiddenException('Trying to update another user\'s subscription');
         }
-        return this.prisma.subscription.update(dto.userId,{isValid:dto.isValid});
+
+        return await this.prisma.subscription.update({
+            where: {
+                id:dto.userId,
+            },
+            data: {
+                isValid: dto.isValid,
+            }
+        });
     }
 }
