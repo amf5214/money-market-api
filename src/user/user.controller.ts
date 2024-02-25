@@ -20,9 +20,11 @@ export class UserController {
         return this.userService.getuser(Number(params.id));
     }
 
-    @Patch('update')
-    updateprofile(@Body() dto:UpdateUserDto) {
-        return this.userService.updateuser(dto);
+    @Patch('update/:id')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, 'User'))
+    updateuser(@Param() params:any, @Body() dto:UpdateUserDto) {
+        return this.userService.updateuser(Number(params.id), dto);
     }
 
     @Post('create')
