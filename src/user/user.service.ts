@@ -6,18 +6,14 @@ import { UpdateUserDto } from './update-user-dto';
 
 @Injectable()
 export class UserService {
-    constructor(private prisma:PrismaService) {}
+    constructor(
+        private prisma:PrismaService
+    ) {}
 
     async getuser(id:number) {
-        const user = await this.prisma.user.findUnique({
+        const user:User = await this.prisma.user.findUnique({
 			where: {
 				id: id,
-			},
-			select: {
-				id:true,
-                authAccountId:true,
-                firstName:true,
-                lastName:true,
 			},
 		})
         return user;
