@@ -82,13 +82,8 @@ export class SubscriptionService {
     }
 
     async update(authId:number, dto:SubscriptionDto) {
-        const user:User = await this.prisma.user.findFirst({
-			where: {
-				authAccountId: authId,
-			},
-		})
-        if(dto.userId != user.id) {
-            return new ForbiddenException('Trying to update another user\'s subscription');
+        if(!this.authCheck.checkAuthAccess(authId, dto.userId)) {
+            return new ForbiddenException('Trying to access a subscription for another user');
         }
 
         return await this.prisma.subscription.update({
