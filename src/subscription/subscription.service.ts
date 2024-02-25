@@ -60,7 +60,7 @@ export class SubscriptionService {
     }
 
     async findOne(authAccountId:number, id:number) {
-        if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
+        if(!await this.authCheck.checkAuthAccess(authAccountId, id)) {
             return new ForbiddenException('Trying to access a subscription for another user');
         }
 
@@ -76,14 +76,14 @@ export class SubscriptionService {
         return this.authCheck.getAllAccessibleSubscriptions(authId);
     }
 
-    async update(authId:number, dto:SubscriptionDto) {
-        if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
+    async update(authId:number, dto:SubscriptionDto, subId:number) {
+        if(!await this.authCheck.checkAuthAccess(authId, subId)) {
             return new ForbiddenException('Trying to access a subscription for another user');
         }
 
         return await this.prisma.subscription.update({
             where: {
-                id:dto.userId,
+                id:subId,
             },
             data: {
                 isValid: dto.isValid,
