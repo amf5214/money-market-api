@@ -20,6 +20,16 @@ export class SubscriptionService {
     }
     async findUserSubscriptions(id:number) {
     }
+
     async update(id:number, dto:SubscriptionDto) {
+        const user:User = await this.prisma.user.findFirst({
+			where: {
+				authAccountId: id,
+			},
+		})
+        if(dto.userId != user.id) {
+            return new ForbiddenException('Trying to update another user\'s subscription');
+        }
+        return this.prisma.subscription.update(dto.userId,{isValid:dto.isValid});
     }
 }
