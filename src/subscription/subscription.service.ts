@@ -51,7 +51,11 @@ export class SubscriptionService {
         if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
             return new ForbiddenException('Trying to access a subscription for another user');
         }
-        await this.prisma.subscription.delete(idToBeRemoved);
+        await this.prisma.subscription.delete({
+            where: {
+                id: idToBeRemoved,
+            },
+        });
         return true;
     }
 
