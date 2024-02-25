@@ -1,5 +1,5 @@
 import { Controller, UseGuards, Get, Patch, Post, Param, Body } from '@nestjs/common';
-import { User } from '@prisma/client';
+import { User, AuthAccount } from '@prisma/client';
 
 import { JwtGuard } from '../auth/guard';
 import { UserService } from './user.service';
@@ -9,6 +9,7 @@ import { CheckPolicies } from 'src/casl/decorator';
 import { AppAbility } from 'src/casl/casl-ability.factory';
 import { PoliciesGuard } from 'src/casl/guard';
 import { Action } from 'src/casl/action.enum';
+import { GetAuthAccount } from 'src/auth/decorator';
 
 @UseGuards(JwtGuard)
 @Controller('user')
@@ -18,8 +19,8 @@ export class UserController {
     @Patch('update/:id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, 'User'))
-    updateuser(@Param() params:any, @Body() dto:UpdateUserDto) {
-        return this.userService.updateuser(Number(params.id), dto);
+    updateuser(@Body() dto:UpdateUserDto, @GetAuthAccount() authAccount:AuthAccount) {
+        return this.userService.updateuser(authAccount.id, dto);
     }
 
     @Post('create')
