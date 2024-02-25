@@ -68,17 +68,7 @@ export class SubscriptionService {
     }
 
     async findUserSubscriptions(authId:number) {
-        const user:User = await this.prisma.user.findFirst({
-			where: {
-				authAccountId: authId,
-			},
-		})
-        const subscriptions = await this.prisma.subscription.findAll({
-            where: {
-                userId:user.id,
-            },
-        });
-        return subscriptions;
+        return this.authCheck.getAllAccessibleSubscriptions(authId);
     }
 
     async update(authId:number, dto:SubscriptionDto) {
