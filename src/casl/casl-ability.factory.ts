@@ -22,6 +22,12 @@ export class CaslAbilityFactory {
         const { can, cannot, build } = new AbilityBuilder<AppAbility>(createPrismaAbility);
 
         can(Action.Manage, 'Subscription', {userId: user.id});
+        can(Action.Update, 'User', {id: user.id});
+        can(Action.Read, 'User', {id: user.id});
+
+        if(user.roles.some((role) => role === Role.ADMIN)) {
+            can(Action.Manage, 'User');
+        }
 
         if(user.roles.some((role) => role === Role.CONTENT_CREATOR)) {
             can(Action.Manage, 'LearningSeries', {creatorId:user.id});
