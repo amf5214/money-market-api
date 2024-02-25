@@ -37,13 +37,8 @@ export class SubscriptionService {
     }
 
     async create(authId:number, dto:SubscriptionDto) {
-        const user:User = await this.prisma.user.findFirst({
-			where: {
-				authAccountId: authId,
-			},
-		})
-        if(dto.userId != user.id) {
-            return new ForbiddenException('Trying to create a subscription for another user');
+        if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
+            return new ForbiddenException('Trying to access a subscription for another user');
         }
         return this.prisma.subscription.create({
             data: {
