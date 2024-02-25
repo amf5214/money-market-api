@@ -83,7 +83,7 @@ export class SubscriptionService {
 
         return await this.prisma.subscription.update({
             where: {
-                id:dto.userId,
+                id:subId,
             },
             data: {
                 isValid: dto.isValid,

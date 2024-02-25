@@ -21,9 +21,9 @@ export class SubscriptionController {
         return this.subscriptionService.remove(Number(params.id), authAccount.id);
     }
 
-    @Post('update') 
-    update(@GetAuthAccount() authAccount:AuthAccount, @Body() dto:SubscriptionDto) {
-        return this.subscriptionService.update(authAccount.id, dto);
+    @Post('update/:id') 
+    update(@GetAuthAccount() authAccount:AuthAccount, @Body() dto:SubscriptionDto, @Param() params:any) {
+        return this.subscriptionService.update(authAccount.id, dto, Number(params.id));
     }
 
     @Get(':id')
