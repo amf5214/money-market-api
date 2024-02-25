@@ -12,7 +12,21 @@ export class SubscriptionService {
     }
     async invalidate(id:number) {
     }
+
     async create(id:number, dto:SubscriptionDto) {
+        const user:User = await this.prisma.user.findFirst({
+			where: {
+				authAccountId: id,
+			},
+		})
+        if(dto.userId != user.id) {
+            return new ForbiddenException('Trying to create a subscription for another user');
+        }
+        return this.prisma.subscription.create({
+            data: {
+                ...dto,
+            },
+        });
     }
 
     async remove(id:number) {
