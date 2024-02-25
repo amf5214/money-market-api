@@ -48,13 +48,8 @@ export class SubscriptionService {
     }
 
     async remove(idToBeRemoved:number, authId:number) {
-        const user:User = await this.prisma.user.findFirst({
-			where: {
-				authAccountId: authId,
-			},
-		})
-        if(user.id != idToBeRemoved) {
-            return new ForbiddenException('Trying to create a subscription for another user');
+        if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
+            return new ForbiddenException('Trying to access a subscription for another user');
         }
         await this.prisma.subscription.delete(idToBeRemoved);
         return true;
