@@ -76,8 +76,8 @@ export class SubscriptionService {
         return this.authCheck.getAllAccessibleSubscriptions(authId);
     }
 
-    async update(authId:number, dto:SubscriptionDto) {
-        if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
+    async update(authId:number, dto:SubscriptionDto, subId:number) {
+        if(!await this.authCheck.checkAuthAccess(authId, subId)) {
             return new ForbiddenException('Trying to access a subscription for another user');
         }
 
