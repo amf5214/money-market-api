@@ -13,7 +13,14 @@ export class SubscriptionService {
     ) {}
 
     async validate(id:number) {
-        await this.prisma.subscription.update(id,{isValid:true});
+        await this.prisma.subscription.update({
+            where: {
+                id:id,
+            },
+            data: {
+                isValid: true,
+            }
+        });
         return true;
     }
 
