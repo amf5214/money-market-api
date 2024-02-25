@@ -8,9 +8,15 @@ import { SubscriptionDto } from './dto';
 export class SubscriptionService {}
 export class SubscriptionService {
     constructor(private prisma:PrismaService) {}
+
     async validate(id:number) {
+        await this.prisma.subscription.update(id,{isValid:true});
+        return true;
     }
+
     async invalidate(id:number) {
+        await this.prisma.subscription.update(id,{isValid:false});
+        return true;
     }
 
     async create(id:number, dto:SubscriptionDto) {
