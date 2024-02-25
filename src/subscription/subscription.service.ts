@@ -14,8 +14,12 @@ export class SubscriptionService {
     }
     async create(id:number, dto:SubscriptionDto) {
     }
+
     async remove(id:number) {
+        await this.prisma.subscription.delete(id);
+        return true;
     }
+
     async findOne(id:number) {
         const subscription = await this.prisma.subscription.findUnique({
             where: {
