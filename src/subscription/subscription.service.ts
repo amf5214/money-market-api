@@ -34,8 +34,16 @@ export class SubscriptionService {
         });
     }
 
-    async remove(id:number) {
-        await this.prisma.subscription.delete(id);
+    async remove(idToBeRemoved:number, authId:number) {
+        const user:User = await this.prisma.user.findFirst({
+			where: {
+				authAccountId: authId,
+			},
+		})
+        if(user.id != idToBeRemoved) {
+            return new ForbiddenException('Trying to create a subscription for another user');
+        }
+        await this.prisma.subscription.delete(idToBeRemoved);
         return true;
     }
 
