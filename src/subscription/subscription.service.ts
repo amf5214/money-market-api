@@ -60,7 +60,7 @@ export class SubscriptionService {
     }
 
     async findOne(authAccountId:number, id:number) {
-        if(!await this.authCheck.checkAuthAccess(authId, idToBeRemoved)) {
+        if(!await this.authCheck.checkAuthAccess(authAccountId, id)) {
             return new ForbiddenException('Trying to access a subscription for another user');
         }
 
