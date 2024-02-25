@@ -3,7 +3,7 @@ import { Subscription, User } from '@prisma/client';
 
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SubscriptionDto } from './dto';
-import { CheckUserAccess } from './access-check/accesscheck';
+import { CheckUserAccess } from './access-check';
 
 @Injectable()
 export class SubscriptionService {
