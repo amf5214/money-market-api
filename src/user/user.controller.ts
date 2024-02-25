@@ -16,7 +16,7 @@ import { GetAuthAccount } from 'src/auth/decorator';
 export class UserController {
     constructor(private userService:UserService) {}
 
-    @Patch('update/:id')
+    @Patch('update')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, 'User'))
     updateuser(@Body() dto:UpdateUserDto, @GetAuthAccount() authAccount:AuthAccount) {
