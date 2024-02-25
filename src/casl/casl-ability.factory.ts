@@ -5,7 +5,7 @@ import { createPrismaAbility, PrismaQuery, Subjects } from '@casl/prisma';
 
 import { Action } from './action.enum';
 
-type PrismaSubjects = Subjects<{User: User, AuthAccount: AuthAccount, Subscription:Subscription, LearningSeries:LearningSeries}>;
+type PrismaSubjects = Subjects<{User: User, AuthAccount: AuthAccount, Subscription:Subscription, LearningSeries:LearningSeries}> | 'all';
 
 type AppAbility = PureAbility<[Action, PrismaSubjects], PrismaQuery>;
 
