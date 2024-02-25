@@ -30,14 +30,11 @@ export class UserService {
         });
     }
 
-    async createuser(dto:CreateUserDto) {
+    async createuser(authAccountId:number) {
         const user = await this.prisma.user.create({
             data: {
-                authAccountId: dto.authAccountId,
+                authAccountId: authAccountId,
             },
-            select: {
-                id:true,
-            }
         });
         return user;
     }
