@@ -1,13 +1,10 @@
 import { Injectable, ExecutionContext, CanActivate } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { User, AuthAccount, Subscription, LearningSeries, Prisma } from '@prisma/client';
-import { PureAbility, AbilityBuilder, subject, ExtractSubjectType } from '@casl/ability';
-import { createPrismaAbility, PrismaQuery, Subjects } from '@casl/prisma';
 
 import { CaslAbilityFactory, AppAbility } from '../casl-ability.factory';
 import { CHECK_POLICIES_KEY } from '../decorator';
 import { PolicyHandler } from '../decorator';
-import { PrismaService } from '../../prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class PoliciesGuard implements CanActivate {

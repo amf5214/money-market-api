@@ -6,9 +6,9 @@ import { ConfigService } from '@nestjs/config';
 import * as argon from 'argon2';
 
 import { AuthDto } from './dto';
-import { PrismaService } from '../prisma/prisma.service';
-import { ProfileService } from '../mongodb/profile';
-import { ProfileDto } from '../mongodb/profile/dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { ProfileService } from 'src/mongodb/profile';
+import { ProfileDto } from 'src/mongodb/profile/dto';
 
 @Injectable({})
 export class AuthService {
