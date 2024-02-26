@@ -3,13 +3,13 @@ import { Subscription, User } from '@prisma/client';
 
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SubscriptionDto } from './dto';
-import { CheckUserAccess } from './access-check';
+import { SubscriptionAccessService } from './access-check';
 
 @Injectable()
 export class SubscriptionService {
     constructor(
         private prisma:PrismaService,
-        private authCheck:CheckUserAccess
+        private authCheck:SubscriptionAccessService
     ) {}
 
     async validate(id:number) {
