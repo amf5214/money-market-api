@@ -3,6 +3,7 @@ import { Injectable, ForbiddenException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { UpdateUserDto } from './update-user-dto';
 import { User } from '@prisma/client';
+import { CreateUserDto } from './create-user-dto';
 
 @Injectable()
 export class UserService {
@@ -44,10 +45,10 @@ export class UserService {
         });
     }
 
-    async createuser(authAccountId:number) {
+    async createuser(dto:CreateUserDto) {
         const user = await this.prisma.user.create({
             data: {
-                authAccountId: authAccountId,
+                ...dto
             },
         });
         return user;
