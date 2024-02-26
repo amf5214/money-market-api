@@ -1,9 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ForbiddenException } from '@nestjs/common';
 
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateUserDto } from './create-user-dto';
 import { UpdateUserDto } from './update-user-dto';
-import { User, AuthAccount } from '@prisma/client';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
@@ -11,7 +10,15 @@ export class UserService {
         private prisma:PrismaService
     ) {}
 
-    async getuser(id:number) {
+    async getuser(authAccountId:number, id:number) {
+        const authUser:User = await this.prisma.user.findFirst({
+			where: {
+				authAccountId: authAccountId,
+			},
+		})
+        if(authUser.id != id) {
+            return new ForbiddenException('Trying to access another user\'s account');
+        }
         const user:User = await this.prisma.user.findUnique({
 			where: {
 				id: id,
