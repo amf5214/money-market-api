@@ -1,5 +1,6 @@
 import { ObjectId, Entity, Column, ObjectIdColumn } from 'typeorm';
 
+// Object type declaration for handling mongodb Profile objects
 @Entity()
 export class Profile {
   @ObjectIdColumn()

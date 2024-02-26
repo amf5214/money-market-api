@@ -1,5 +1,6 @@
 import { Entity, Column, ObjectIdColumn } from 'typeorm';
 
+// Object type declaration for handling mongodb FileContent objects
 @Entity()
 export class FileContent {
   @ObjectIdColumn()
