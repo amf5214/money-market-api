@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments } from 'class-validator';
 
-
+// Country validation rule declaration to check if the country field is valid 
 @ValidatorConstraint({ name: 'ValidCountry', async: true })
 @Injectable()
 export class ValidCountryRule implements ValidatorConstraintInterface {
   constructor() {}
 
+  // Validation function to check country value
   async validate(value: string) {
     try {
       let validValues = ['ar', 'au', 'be', 'br', 'ca', 'ch', 'cl', 'cn', 'cz', 'de', 
@@ -20,6 +21,7 @@ export class ValidCountryRule implements ValidatorConstraintInterface {
     }
   }
 
+  // Function to return error message upon invalid value being passed
   defaultMessage(args: ValidationArguments) {
     return `Country option not valid`;
   }

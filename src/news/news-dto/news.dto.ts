@@ -2,6 +2,7 @@ import { IsString, IsInt, IsOptional, Validate } from 'class-validator';
 import { ValidLanguageRule } from '../validlanguage-rule';
 import { ValidCountryRule } from '../validcountry-rule';
 
+// Data Transfer Object for handling news request
 export class NewsDto {
 
 	@Validate(ValidLanguageRule)
