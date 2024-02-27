@@ -13,7 +13,7 @@ export class LearnPage {
   description:string;
 
   @Column()
-  coverArtId:ObjectId;
+  coverArtId:string;
 
   @Column()
   authorName:string;
