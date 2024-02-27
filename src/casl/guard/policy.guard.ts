@@ -6,6 +6,7 @@ import { CHECK_POLICIES_KEY } from '../decorator';
 import { PolicyHandler } from '../decorator';
 import { PrismaService } from 'src/prisma/prisma.service';
 
+// Guard that applies a provided handler to verify authorization
 @Injectable()
 export class PoliciesGuard implements CanActivate {
   constructor(
@@ -24,13 +25,13 @@ export class PoliciesGuard implements CanActivate {
     const authAccount = context.switchToHttp().getRequest().user;
     let authId:number = authAccount.id;
 
-
     const user = await this.prisma.user.findFirst({
         where: {
             authAccountId: authId,
         }
     });
-    const ability = await this.caslAbilityFactory.createForUser(user);
+    
+    const ability = this.caslAbilityFactory.createForUser(user);
 
     return policyHandlers.every((handler) =>
       this.execPolicyHandler(handler, ability),
