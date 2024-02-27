@@ -11,23 +11,32 @@ export class UserService {
         private prisma:PrismaService
     ) {}
 
-    async getuser(authAccountId:number, id:number) {
+    async getownuser(authAccountId:number) {
         const authUser:User = await this.prisma.user.findFirst({
 			where: {
 				authAccountId: authAccountId,
 			},
 		})
-        if(authUser.id != id) {
-            return new ForbiddenException('Trying to access another user\'s account');
-        }
         const user:User = await this.prisma.user.findUnique({
 			where: {
-				id: id,
+				id: authUser.id,
 			},
 		})
         
         return user;
     }
+
+    async getuser(authAccountId:number, userId:number) {
+        const user:User = await this.prisma.user.findUnique({
+			where: {
+				id: userId,
+			},
+		})
+        
+        return user;
+    }
+
+    
 
     async updateuser(id:number, dto:UpdateUserDto) {
         const user:User = await this.prisma.user.findFirst({
