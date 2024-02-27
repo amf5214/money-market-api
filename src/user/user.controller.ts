@@ -33,7 +33,15 @@ export class UserController {
     @Get(':id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, 'User'))
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.Manage, 'User'))
     getuser(@GetAuthAccount() authAccount:AuthAccount, @Param() params:any) {
         return this.userService.getuser(Number(authAccount.id), Number(params.id));
+    }
+
+    @Get()
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, 'User'))
+    getrequestinguser(@GetAuthAccount() authAccount:AuthAccount) {
+        return this.userService.getownuser(Number(authAccount.id));
     }
 }
