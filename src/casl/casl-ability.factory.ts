@@ -9,13 +9,14 @@ type PrismaSubjects = Subjects<{User: User, AuthAccount: AuthAccount, Subscripti
 
 export type AppAbility = PureAbility<[Action, PrismaSubjects], PrismaQuery>;
 
+// Enum declaration 
 enum Role {
     USER = 'USER',
     ADMIN = 'ADMIN',
     CONTENT_CREATOR = 'CONTENT_CREATOR'
   }
-  
 
+// Ability factory to create an ability array that defines what the user can do  
 @Injectable()
 export class CaslAbilityFactory {
     createForUser(user:User) {
