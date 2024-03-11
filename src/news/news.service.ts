@@ -48,16 +48,21 @@ export class NewsService {
 		}
 		let date = '';
 		if(dto.publishedAfterDate != null) {
-			date = `&published_after=${dto.publishedAfterDate}`;
+			date = `published_after=${dto.publishedAfterDate}`;
+		}	else {
+			const dateObj:Date = new Date();
+			dateObj.setDate(dateObj.getDate() - 5);
+			date = `published_after=${dateObj.getFullYear()}-${dateObj.getMonth() < 10 ? '0' + dateObj.getMonth() : dateObj.getMonth()}-${dateObj.getDate() < 10 ? '0' + dateObj.getDate() : dateObj.getDate()}`
 		}
-		const basePath = `https://api.marketaux.com/v1/news/all?countries=${dto.country}&language=${dto.language}&filter_entities=true&limit=${dto.limit}${dto.publishedAfterDate != null ? date : ''}&api_token=${this.config.get('MARKETAUX_API_TOKEN')}`;
+		const basePath = `https://api.marketaux.com/v1/news/all?countries=${dto.country}&language=${dto.language}&filter_entities=true&limit=${dto.limit}&${date}&api_token=${this.config.get('MARKETAUX_API_TOKEN')}`;
 		const observable = this.httpService.get(`${basePath}`);
 		const response = await firstValueFrom(observable); 
-		let stories = [];
+		console.log(basePath);
+		let newsArr:NewsStory[] = [];
 		response.data['data'].forEach((story) => {
-			stories.push(new NewsStory(story));
+			newsArr.push(new NewsStory(story));
 		});
-		return {news: stories};
+		return newsArr;
 	}
 
 	// Service function to handle market news request 
@@ -70,11 +75,11 @@ export class NewsService {
 			title: "Is Ciena Corp the next hot AI Stock to buy? By Investing.com"
 		}
 
-		for(let i = 0; i < 3; i++) {
+		for(let i = 0; i < 9; i++) {
 			newsArr.push(dummyStory);
 		}
 		
-		return {news: newsArr}
+		return newsArr;
 	}
 	
 }
