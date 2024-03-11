@@ -18,7 +18,7 @@ export class NewsController {
 	// Route to recieve market news as a json object
 	@Post('market-news')
 	async marketnews(@Body() dto:NewsDto) {
-		const news = await this.newsService.marketnewsDemo(dto);
+		const news = await this.newsService.marketnews(dto);
 		console.log(news);
 		return news;
 	}
