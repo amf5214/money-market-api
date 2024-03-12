@@ -99,12 +99,16 @@ export class AuthService {
 			const user = await this.prisma.user.create({
 				data: {
 					authAccountId: auth.id,
+					username: dto.username,
+					firstName: dto.firstName,
+					lastName: dto.lastName,
 				}
 			});
 
 			let newProfileDto = new ProfileDto();
 			newProfileDto.authAccountId = auth.id;
 			newProfileDto.email = dto.email;
+			newProfileDto.name = `${dto.firstName} ${dto.lastName}`;
 			this.profileService.createOne(newProfileDto);
 
 

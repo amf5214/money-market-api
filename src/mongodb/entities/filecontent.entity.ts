@@ -1,10 +1,10 @@
-import { Entity, Column, ObjectIdColumn } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, ObjectId } from 'typeorm';
 
 // Object type declaration for handling mongodb FileContent objects
 @Entity()
 export class FileContent {
   @ObjectIdColumn()
-  id: number;
+  id: ObjectId;
 
   @Column()
   name: string;
@@ -19,6 +19,6 @@ export class FileContent {
   location: string;
 
   @Column()
-  picDate: string;
+  picDate: Date;
 
 }

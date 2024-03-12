@@ -11,7 +11,9 @@ export class StockdataController {
 
 	@Post('ticker')
 	tickerdata(@Body() dto:TickerDto) {
-		return this.stockdataService.tickerdata(dto);
+		const response = this.stockdataService.tickerdata(dto);
+		console.log(response);
+		return response;
 	}
 
 	@Get('market-status')
@@ -22,5 +24,10 @@ export class StockdataController {
 	@Post('financials')
 	tickerfinancials(@Body() dto:FinancialsDto) {
 		return this.stockdataService.tickerfinancials(dto);
+	}
+
+	@Get('winners-losers')
+	marketWinnersLosers() {
+		return this.stockdataService.winnersLosersDemo();
 	}
 }

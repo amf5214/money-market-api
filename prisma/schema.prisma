@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  firstName String?
+  lastName String?
+  username String @default("User")
+
+  roles Role[] @default([USER])
+
+  authAccountId Int
+  authAccount AuthAccount @relation(fields: [authAccountId], references: [id], onDelete: Cascade)
+  subscriptions Subscription[]
+  learningSeries LearningSeries[]
+}
+
+
+model AuthAccount {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email String @unique
+  hash String
+
+  users User[]
+}
+
+model Subscription {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isValid Boolean @default(false)
+
+  userId Int
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+}
+
+model LearningSeries {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  creatorId Int
+  user User @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+
+}
+
+enum Role {
+  USER
+  ADMIN
+  CONTENT_CREATOR
+}
