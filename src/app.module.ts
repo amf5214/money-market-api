@@ -37,9 +37,7 @@ import { CaslModule } from './casl/casl.module';
       imports: [LocalConfigModule],
       useFactory: async (localConfigService: LocalConfigService) => ({
         type: 'mongodb',
-        host: localConfigService.getMongoDBHost(),
-        port: localConfigService.getMongoDBPort(),
-        database: localConfigService.getMongoDBName(),
+        url: localConfigService.getMongoDBHost(),
         entities: [Profile],
         synchronize: true,
       }),
