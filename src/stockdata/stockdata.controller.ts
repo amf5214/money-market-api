@@ -26,6 +26,11 @@ export class StockdataController {
 		return this.stockdataService.tickerfinancials(dto);
 	}
 
+	@Post('details')
+	tickerdetails(@Body() dto:FinancialsDto) {
+		return this.stockdataService.tickerdetails(dto);
+	}
+
 	@Get('winners-losers')
 	marketWinnersLosers() {
 		return this.stockdataService.winnersLosersDemo();

@@ -17,7 +17,6 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { PaymentModule } from './payment/payment.module';
 import { CaslModule } from './casl/casl.module';
 
-
 @Module({
   imports: [
     AuthModule, 
