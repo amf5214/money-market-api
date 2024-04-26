@@ -33,6 +33,6 @@ export class StockdataController {
 
 	@Get('winners-losers')
 	marketWinnersLosers() {
-		return this.stockdataService.winnersLosersDemo();
+		return this.stockdataService.winnersLosers();
 	}
 }
