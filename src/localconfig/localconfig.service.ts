@@ -16,6 +16,10 @@ export class LocalConfigService {
     return this.envConfig[key];
   }
 
+ getStripeApi() {
+    return this.envConfig['STRIPE_API_KEY'];
+  }
+
   getMongoDBHost(): string {
     return this.envConfig['MONGODB_HOST'];
   }
