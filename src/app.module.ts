@@ -17,7 +17,6 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { PaymentModule } from './payment/payment.module';
 import { CaslModule } from './casl/casl.module';
 
-
 @Module({
   imports: [
     AuthModule, 
@@ -37,9 +36,7 @@ import { CaslModule } from './casl/casl.module';
       imports: [LocalConfigModule],
       useFactory: async (localConfigService: LocalConfigService) => ({
         type: 'mongodb',
-        host: localConfigService.getMongoDBHost(),
-        port: localConfigService.getMongoDBPort(),
-        database: localConfigService.getMongoDBName(),
+        url: localConfigService.getMongoDBHost(),
         entities: [Profile],
         synchronize: true,
       }),
