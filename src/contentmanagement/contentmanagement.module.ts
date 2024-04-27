@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ContentmanagementController } from './contentmanagement.controller';
-import { ContentmanagementService } from './contentmanagement.service';
+import { ContentManagementController } from './contentManagementController';
 
 @Module({
-  controllers: [ContentmanagementController],
-  providers: [ContentmanagementService]
+  controllers: [ContentManagementController],
+  providers: []
 })
-export class ContentmanagementModule {}
+export class ContentManagementModule {}

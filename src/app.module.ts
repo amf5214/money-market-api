@@ -6,7 +6,7 @@ import { StockdataModule } from './stockdata/stockdata.module';
 import { ProfileModule } from './profile/profile.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { LearnModule } from './learn/learn.module';
-import { ContentmanagementModule } from './contentmanagement/contentmanagement.module';
+import { ContentManagementModule } from './contentmanagement/contentmanagement.module';
 import { MongodbModule } from './mongodb/mongodb.module';
 import { Profile } from './mongodb/entities/profile.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
