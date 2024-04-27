@@ -13,7 +13,7 @@ export class LearnSeries {
   description:string;
 
   @Column()
-  coverArtId:string;
+  coverArtId:number;
 
   @Column()
   authorName:string;
