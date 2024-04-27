@@ -22,4 +22,9 @@ export class ContentManagementController {
   findseries(@Body() dto:SeriesDto) {
     return this.seriesService.findOne(dto.objectId);
   }
+
+  @Get('/series/owned')
+  findOwnSeries(@GetAuthAccount() authAccount:AuthAccount) {
+    return this.seriesService.findAllByAuthor(authAccount.id);
+  }
 }
