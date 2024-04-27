@@ -9,7 +9,7 @@ export class SeriesDto {
     title:string;
 
     @IsString()
-    descriptioin:string;
+    description:string;
 
     @IsString()
     coverArtId:ObjectId;
