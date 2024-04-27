@@ -2,6 +2,8 @@ import { Controller, Body, Post, Get, UseGuards, Param, Patch } from '@nestjs/co
 import { JwtGuard } from '../auth/guard';
 import { ProfileDto } from '../mongodb/profile/dto';
 import { ProfileService } from '../mongodb/profile';
+import { GetAuthAccount } from "../auth/decorator";
+import { AuthAccount } from "@prisma/client";
 
 @UseGuards(JwtGuard)
 @Controller('profile')
@@ -11,8 +13,8 @@ export class ProfileController {
 	) {}
 
 	@Post('create')
-	async createone(@Body() dto:ProfileDto) {
-		return this.profileService.createOne(dto);
+	async createone(@Body() dto:ProfileDto, @GetAuthAccount() authAccount:AuthAccount) {
+		return this.profileService.createOne(dto, authAccount.id);
 	}
 
 	@Patch('update/:id')
@@ -33,5 +35,10 @@ export class ProfileController {
 	@Get('remove/:id')
 	remove(@Param() params:any) {
 		return this.profileService.remove(params.id);
+	}
+
+	@Get('')
+	findOwn(@GetAuthAccount() authAccount:AuthAccount) {
+		return this.profileService.findOwn(authAccount.id);
 	}
 }
