@@ -10,7 +10,7 @@ import { ObjectId } from "typeorm";
 @Controller('contentmanagement')
 export class ContentManagementController {
   constructor(
-    private contentmanagementService: ContentmanagementService
+    private seriesService: SeriesService,
   ) {}
 
   @Post('/series/create')
