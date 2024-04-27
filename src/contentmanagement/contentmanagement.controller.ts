@@ -15,6 +15,11 @@ export class ContentManagementController {
 
   @Post('/series/create')
   createseries(@Body() dto:SeriesDto, @GetAuthAccount() authAccount:AuthAccount) {
-    this.contentmanagementService.createseries(dto, authAccount.id);
+    return this.seriesService.createSeries(authAccount.id, dto);
+  }
+
+  @Get('/series')
+  findseries(@Body() dto:SeriesDto) {
+    return this.seriesService.findOne(dto.objectId);
   }
 }
