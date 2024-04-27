@@ -3,10 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ProfileService } from './profile';
 import { Profile } from './entities/profile.entity'
-import { SeriesService } from './learningseries/series.service';
-import { PageService } from './learningpage/page.service';
-import { SectionService } from './learningsection/section.service';
-import { FilecontentService } from './filecontent/filecontent.service';
+import { SeriesService } from "./learningseries";
+import { PageService } from "./learningpage";
+import { SectionService } from "./learningsection";
+import { FilecontentService } from "./filecontent";
 import { LearnPage } from './entities/learnpage.entity';
 import { FileContent } from './entities/filecontent.entity';
 import { LearnSection } from './entities/learnsection.entity';
