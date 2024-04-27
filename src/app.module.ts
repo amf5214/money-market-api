@@ -16,6 +16,9 @@ import { ConfigModule } from '@nestjs/config';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { PaymentModule } from './payment/payment.module';
 import { CaslModule } from './casl/casl.module';
+import { LearnSeries } from "./mongodb/entities/learnseries.entity";
+import { LearnPage } from "./mongodb/entities/learnpage.entity";
+import { LearnSection } from "./mongodb/entities/learnsection.entity";
 
 @Module({
   imports: [
@@ -37,10 +40,10 @@ import { CaslModule } from './casl/casl.module';
       useFactory: async (localConfigService: LocalConfigService) => ({
         type: 'mongodb',
         url: localConfigService.getMongoDBHost(),
-        entities: [Profile],
         database: localConfigService.getMongoDBName(),
         synchronize: true,
         logging: true,
+        entities: [Profile, LearnSeries, LearnPage, LearnSection],
       }),
       inject: [LocalConfigService],
     }),
