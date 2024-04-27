@@ -3,7 +3,6 @@ import { ObjectId } from 'typeorm';
 
 export class PageDto {
 
-    @IsString()
     objectId:ObjectId;
 
     @IsString()

@@ -2,7 +2,7 @@ import { IsNumber, IsString } from "class-validator";
 import { ObjectId } from "typeorm";
 
 export class SectionDto {
-    @IsString()
+
     objectId:ObjectId;
 
     @IsString()
