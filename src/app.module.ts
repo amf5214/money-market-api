@@ -5,7 +5,6 @@ import { NewsModule } from './news/news.module';
 import { StockdataModule } from './stockdata/stockdata.module';
 import { ProfileModule } from './profile/profile.module';
 import { PrismaModule } from './prisma/prisma.module';
-import { LearnModule } from './learn/learn.module';
 import { ContentManagementModule } from './contentmanagement/contentmanagement.module';
 import { MongodbModule } from './mongodb/mongodb.module';
 import { Profile } from './mongodb/entities/profile.entity';
@@ -28,7 +27,6 @@ import { LearnSection } from "./mongodb/entities/learnsection.entity";
     StockdataModule, 
     ProfileModule, 
     PrismaModule,
-    // LearnModule,
     ContentManagementModule,
     MongodbModule,
     LocalConfigModule,
