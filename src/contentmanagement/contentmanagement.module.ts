@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ContentManagementController } from './contentManagementController';
+import { ContentManagementController } from './contentmanagement.controller';
 
 @Module({
   controllers: [ContentManagementController],

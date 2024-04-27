@@ -1,13 +1,14 @@
-import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { JwtGuard } from "../auth/guard";
-import { ContentmanagementService } from "./contentmanagement.service";
 import { SeriesDto } from "../mongodb/learningseries/dto";
 import { GetAuthAccount } from "../auth/decorator";
 import { AuthAccount } from "@prisma/client";
+import { SeriesService } from "../mongodb/learningseries";
+import { ObjectId } from "typeorm";
 
 @UseGuards(JwtGuard)
 @Controller('contentmanagement')
-export class ContentmanagementController {
+export class ContentManagementController {
   constructor(
     private contentmanagementService: ContentmanagementService
   ) {}

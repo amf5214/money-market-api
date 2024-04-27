@@ -28,8 +28,8 @@ import { LearnSection } from "./mongodb/entities/learnsection.entity";
     StockdataModule, 
     ProfileModule, 
     PrismaModule,
-    LearnModule,
-    ContentmanagementModule,
+    // LearnModule,
+    ContentManagementModule,
     MongodbModule,
     LocalConfigModule,
     ConfigModule.forRoot({
