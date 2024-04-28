@@ -15,14 +15,14 @@ export class ProfileService {
   ) {}
 
   // Function for creating new Profile objects
-  async createOne(dto:ProfileDto) {
+  async createOne(dto:ProfileDto, id:number) {
     const newProfile:Profile = new Profile(); 
     newProfile.email = dto.email;
-    newProfile.authAccountId = dto.authAccountId;   
+    newProfile.authAccountId = id;
     await this.profilesRepository.save(newProfile);
   }
 
-  // Function for editting profile objects
+  // Function for editing profile objects
   async editOne(id:ObjectId, dto:ProfileDto) {
     await this.profilesRepository.update(id, dto);
   }
@@ -41,4 +41,9 @@ export class ProfileService {
   async remove(id: ObjectId): Promise<void> {
     await this.profilesRepository.delete(id);
   }
+  // Function for finding one's own profile object
+  findOwn(authAccountId: number): Promise<Profile | null> {
+    return this.profilesRepository.findOneBy({authAccountId: authAccountId });
+  }
+
 }
