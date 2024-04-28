@@ -5,12 +5,15 @@ import { GetAuthAccount } from "../auth/decorator";
 import { AuthAccount } from "@prisma/client";
 import { SeriesService } from "../mongodb/learningseries";
 import { ObjectId } from "typeorm";
+import { PageService } from "../mongodb/learningpage";
+import { PageDto } from "../mongodb/learningpage/dto";
 
 @UseGuards(JwtGuard)
 @Controller('contentmanagement')
 export class ContentManagementController {
   constructor(
-    private seriesService: SeriesService,
+    private seriesService:SeriesService,
+    private pageService:PageService,
   ) {}
 
   @Post('/series/create')
@@ -26,5 +29,20 @@ export class ContentManagementController {
   @Get('/series/owned')
   findOwnSeries(@GetAuthAccount() authAccount:AuthAccount) {
     return this.seriesService.findAllByAuthor(authAccount.id);
+  }
+
+  @Post('/pages/create')
+  createPage(@Body() dto:PageDto, @GetAuthAccount() authAccount:AuthAccount) {
+    return this.pageService.createPage(dto);
+  }
+
+  @Get('/pages')
+  findPage(@Body() dto:PageDto) {
+    return this.pageService.findOne(dto.objectId);
+  }
+
+  @Get('/pages/byseries')
+  findAllPages(@GetAuthAccount() authAccount:AuthAccount, @Body() dto:PageDto) {
+    return this.pageService.findAllBySeries(dto.learningSeriesId);
   }
 }
