@@ -1,6 +1,6 @@
 # Money Market API
-<p align="center">
- <img src="src/Designer.png" width="200" alt="Money Market Logo" />
+<p>
+ <img src="src/Designer.png" alt="Money Market Logo" />
 </p>
 
 ## Running the app
