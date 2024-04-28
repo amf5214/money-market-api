@@ -48,8 +48,8 @@ export class SeriesService {
     }
 
     // Function for finding an author's Series'
-    async findAllByAuthor(id: number): Promise<LearnSeries | null> {
+    async findAllByAuthor(id: number): Promise<LearnSeries[] | null> {
         const user: User = await this.userService.getownuser(id);
-        return this.learningSeriesRepository.findOneBy({ authorUserId: user.id });
+        return this.learningSeriesRepository.findBy({ authorUserId: user.id });
     }
 }
