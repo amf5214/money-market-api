@@ -18,11 +18,18 @@ export class SeriesService {
         private userService: UserService,
     ) {};
 
-    getSeries(sectionId:number, authAccountId:number) {
-        throw new Error('Method not implemented.');
-    }
-    updateSeries(authAccountId:number, sectionId:number, dto:SeriesDto) {
-        throw new Error('Method not implemented.');
+    async updateSeries(seriesId:ObjectId, field:string, dto:SeriesDto) {
+        let series:LearnSeries = await this.learningSeriesRepository.findOneBy({ id: seriesId });
+        switch(field) {
+            case "title": {
+                series.title = dto.title;
+                break;
+            } case "description": {
+                series.description = dto.description;
+                break;
+            }
+        }
+        await this.learningSeriesRepository.save(series);
     }
     async createSeries(authAccountId:number, dto:SeriesDto) {
         const user: User = await this.userService.getownuser(authAccountId);
