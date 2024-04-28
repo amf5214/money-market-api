@@ -16,6 +16,11 @@ export class ContentManagementController {
     private pageService:PageService,
   ) {}
 
+  @Get('home')
+  gethome() {
+    return this.seriesService.findAll();
+  }
+
   @Post('/series/create')
   createseries(@Body() dto:SeriesDto, @GetAuthAccount() authAccount:AuthAccount) {
     return this.seriesService.createSeries(authAccount.id, dto);
