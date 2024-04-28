@@ -46,7 +46,9 @@ export class SeriesService {
 
     // Function for finding all profile objects
     findAll(): Promise<LearnSeries[]> {
-        return this.learningSeriesRepository.find();
+        return this.learningSeriesRepository.find({
+            take: 12,
+        });
     }
 
     // Function for finding a specific profile object
