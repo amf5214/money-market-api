@@ -12,18 +12,15 @@ export class PageDto {
     description:string;
 
     @IsString()
-    coverArtId:ObjectId;
-
-    @IsString()
-    authorName:string;
+    coverArtId:number;
 
     @IsNumber()
-    authorUserId:number;
-
-    @IsNumber()
-    learningSeriesId:number;
+    learningSeriesId:ObjectId;
 
     @IsNumber()
     orderId:number;
+
+    @IsString()
+    videoSource:string;
 
 }
