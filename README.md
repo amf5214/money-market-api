@@ -104,7 +104,7 @@ GCP_IMAGE_BUCKET="path"
   <td>Prisma</td>
   <td>MarketAux API</td>
   <td>Stripe API</td>
-  <td></td>
+  <td>Google Cloud Platform</td>
  </tr>
  <tr>
   <td>Vite</td>
