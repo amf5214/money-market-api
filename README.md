@@ -4,7 +4,7 @@
 </p>
 
 > [!IMPORTANT]
-> This api will not run without configuring the environment file [!IMPORTANT]
+> This api will not run without configuring the environment file
 
 
 ## Running the app
