@@ -13,12 +13,9 @@
 
 # Create .env file in the project directory
 
-# Ensure that NodeJS is installed
-MacOSX:
-brew install node
+# Ensure that node is installed on your system
 
-Windows:
-https://nodejs.org/en/download
+# Ensure you have setup google cloud plaform system
 
 # Make sure that yarn package manager is installed
 $ npm install --global yarn
@@ -37,6 +34,27 @@ $ yarn run start:dev
 
 # production mode
 $ yarn run start:prod
+```
+
+## Configure NodeJS
+```
+# Ensure that NodeJS is installed
+MacOSX:
+brew install node
+
+Windows:
+https://nodejs.org/en/download
+```
+
+## Remote Storage Services
+
+```
+# Configure google cloud platform remote services
+cloud.google.com
+
+# Configure Application Default Credentials on your machine for Google Cloud Plaform
+https://cloud.google.com/docs/authentication/application-default-credentials
+
 ```
 
 ## Creating .env file
@@ -62,6 +80,9 @@ JWT_SECRET="secret key"
 STRIPE_API_KEY="token"
 STRIPE_PRICE_ID="price_id"
 FRONTEND_URL="/checkout/session"
+
+GCP_ID="id"
+GCP_IMAGE_BUCKET="path"
 ```
 
 ## Services Used
@@ -74,6 +95,7 @@ FRONTEND_URL="/checkout/session"
   <th>ORMs</th>
   <th>Data Services</th>
   <th>Payment Services</th>
+  <th>Storage Solutions</th>
  </tr>
  
  <tr>
@@ -82,6 +104,7 @@ FRONTEND_URL="/checkout/session"
   <td>Prisma</td>
   <td>MarketAux API</td>
   <td>Stripe API</td>
+  <td>Google Cloud Platform</td>
  </tr>
  <tr>
   <td>Vite</td>
@@ -89,12 +112,14 @@ FRONTEND_URL="/checkout/session"
   <td>TypeORM</td>
   <td>Alpha Vantage API</td>
   <td></td>
+  <td></td>
  </tr>
  <tr>
   <td></td>
   <td></td>
   <td></td>
   <td>Polygon API</td>
+  <td></td>
   <td></td>
  </tr>
  
