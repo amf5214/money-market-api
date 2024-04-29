@@ -14,8 +14,8 @@ export class SeriesDto {
     description:string;
 
     @IsOptional()
-    @IsInt()
-    coverArtId:number;
+    @IsString()
+    coverArtId:string;
 
     @IsOptional()
     @IsString()
