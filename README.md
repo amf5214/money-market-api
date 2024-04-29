@@ -13,7 +13,15 @@
 
 # Create .env file in the project directory
 
+# Ensure that NodeJS is installed
+MacOSX:
+brew install node
+
+Windows:
+https://nodejs.org/en/download
+
 # Make sure that yarn package manager is installed
+$ npm install --global yarn
 
 # Install necessary packages
 $ yarn install
