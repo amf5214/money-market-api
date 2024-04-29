@@ -52,18 +52,20 @@ JWT_SECRET="secret key"
 STRIPE_API_KEY="token"
 ```
 
-## Test
+## Services Used
 
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
+<table>
+ 
+ <tr><td>NestJS</td></tr>
+ <tr><td>Prisma</td></tr>
+ <tr><td>TypeORM</td></td></tr>
+ <tr><td>MarketAux API</td></tr>
+ <tr><td>Alpha Vantage API</td></tr>
+ <tr><td>Polygon API</td></tr>
+ <tr><td>Postgres SQL</td></tr>
+ <tr><td>MongoDB</td></tr>
+ 
+</table>
 
 ## Contributors
 
