@@ -18,6 +18,7 @@ import { CaslModule } from './casl/casl.module';
 import { LearnSeries } from "./mongodb/entities/learnseries.entity";
 import { LearnPage } from "./mongodb/entities/learnpage.entity";
 import { LearnSection } from "./mongodb/entities/learnsection.entity";
+import { GoogleCloudModule } from './googlecloud/googlecloud.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { LearnSection } from "./mongodb/entities/learnsection.entity";
     SubscriptionModule,
     PaymentModule,
     CaslModule,
+    GoogleCloudModule,
   ],
   controllers: [],
   providers: [],
