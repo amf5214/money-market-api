@@ -13,22 +13,22 @@ export class ProfileController {
 	) {}
 
 	@Post('/create')
-	async createone(@Body() dto:ProfileDto, @GetAuthAccount() authAccount:AuthAccount) {
+	async createOne(@Body() dto:ProfileDto, @GetAuthAccount() authAccount:AuthAccount) {
 		return this.profileService.createOne(dto, authAccount.id);
 	}
 
 	@Patch('/update/:id')
-	async editone(@Body() dto:ProfileDto, @Param() params:any) {
+	async editOne(@Body() dto:ProfileDto, @Param() params:any) {
 		return this.profileService.editOne(params.id, dto);
 	}
 
 	@Get('/showall')
-	findall() {
+	findAll() {
 		return this.profileService.findAll();
 	}
 
 	@Get('/:id')
-	findone(@Param() params:any) {
+	findOne(@Param() params:any) {
 		return this.profileService.findOne(params.id);
 	}
 
