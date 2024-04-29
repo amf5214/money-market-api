@@ -13,16 +13,16 @@ export class AuthController {
 	// Specifies success http codde with @HttpCode decorator
 	@HttpCode(HttpStatus.CREATED)
 	@Post('signup')
-	signup(@Body() dto:AuthDto) {
-		return this.authService.signup(dto);
+	signUp(@Body() dto:AuthDto) {
+		return this.authService.signUp(dto);
 	}
 
 	// signin route within the auth path
 	// Specifies success http codde with @HttpCode decorator
 	@HttpCode(HttpStatus.OK)
 	@Post('signin')
-	signin(@Body() dto:AuthDto) {
-		return this.authService.signin(dto);
+	signIn(@Body() dto:AuthDto) {
+		return this.authService.signIn(dto);
 	}
 }
 

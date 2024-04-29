@@ -1,30 +1,30 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 import { ObjectId } from 'typeorm';
 
 export class PageDto {
 
-    @IsString()
     objectId:ObjectId;
 
+    @IsOptional()
     @IsString()
     title:string;
 
+    @IsOptional()
     @IsString()
     description:string;
 
+    @IsOptional()
     @IsString()
-    coverArtId:ObjectId;
+    coverArtId:number;
 
-    @IsString()
-    authorName:string;
+    learningSeriesId:ObjectId;
 
-    @IsNumber()
-    authorUserId:number;
-
-    @IsNumber()
-    learningSeriesId:number;
-
+    @IsOptional()
     @IsNumber()
     orderId:number;
+
+    @IsOptional()
+    @IsString()
+    videoSource:string;
 
 }

@@ -43,7 +43,7 @@ export class AuthService {
 	}
 
 	// Service to handle sign in attempts
-	async signin(dto:AuthDto) {
+	async signIn(dto:AuthDto) {
 
 		// Grab AuthAccount from database using unique email from dto
 		const auth = await this.prisma.authAccount.findUnique({
@@ -76,7 +76,7 @@ export class AuthService {
 	}
 
 	// Service to handle sign up attempts
-	async signup(dto:AuthDto) {
+	async signUp(dto:AuthDto) {
 
 		// Hash the provided password for secure storage
 		const hash = await argon.hash(dto.password);
@@ -106,10 +106,9 @@ export class AuthService {
 			});
 
 			let newProfileDto = new ProfileDto();
-			newProfileDto.authAccountId = auth.id;
 			newProfileDto.email = dto.email;
 			newProfileDto.name = `${dto.firstName} ${dto.lastName}`;
-			this.profileService.createOne(newProfileDto);
+			await this.profileService.createOne(newProfileDto, auth.id);
 
 
 			// If the account details provided are valid return account created
@@ -118,7 +117,7 @@ export class AuthService {
 		} catch(error) {
 
 			// If an error was raised check if it is a database error due to a 
-			// non unique email address field
+			// non-unique email address field
 			if(error instanceof Prisma.PrismaClientKnownRequestError) {
 				if(error.code == 'P2002') {
 					throw new ForbiddenException('Credentials already taken');

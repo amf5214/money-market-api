@@ -3,7 +3,6 @@ import { ObjectId } from "typeorm";
 
 export class FileContentDto {
     
-    @IsString()
     objectId:ObjectId;
 
     @IsString()

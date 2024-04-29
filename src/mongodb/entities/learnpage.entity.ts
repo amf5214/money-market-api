@@ -13,17 +13,14 @@ export class LearnPage {
   description:string;
 
   @Column()
-  coverArtId:string;
+  coverArtId:number;
 
-  @Column()
-  authorName:string;
-
-  @Column()
-  authorUserId:number;
-
-  @Column()
-  learningSeriesId:number;
+  @ObjectIdColumn()
+  learningSeriesId:ObjectId;
 
   @Column()
   orderId:number;
+
+  @Column()
+  videoSource:string;
 }

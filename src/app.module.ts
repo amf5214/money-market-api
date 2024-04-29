@@ -5,8 +5,7 @@ import { NewsModule } from './news/news.module';
 import { StockdataModule } from './stockdata/stockdata.module';
 import { ProfileModule } from './profile/profile.module';
 import { PrismaModule } from './prisma/prisma.module';
-import { LearnModule } from './learn/learn.module';
-import { ContentmanagementModule } from './contentmanagement/contentmanagement.module';
+import { ContentManagementModule } from './contentmanagement/contentmanagement.module';
 import { MongodbModule } from './mongodb/mongodb.module';
 import { Profile } from './mongodb/entities/profile.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -16,6 +15,9 @@ import { ConfigModule } from '@nestjs/config';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { PaymentModule } from './payment/payment.module';
 import { CaslModule } from './casl/casl.module';
+import { LearnSeries } from "./mongodb/entities/learnseries.entity";
+import { LearnPage } from "./mongodb/entities/learnpage.entity";
+import { LearnSection } from "./mongodb/entities/learnsection.entity";
 
 @Module({
   imports: [
@@ -25,8 +27,7 @@ import { CaslModule } from './casl/casl.module';
     StockdataModule, 
     ProfileModule, 
     PrismaModule,
-    LearnModule,
-    ContentmanagementModule,
+    ContentManagementModule,
     MongodbModule,
     LocalConfigModule,
     ConfigModule.forRoot({
@@ -37,8 +38,10 @@ import { CaslModule } from './casl/casl.module';
       useFactory: async (localConfigService: LocalConfigService) => ({
         type: 'mongodb',
         url: localConfigService.getMongoDBHost(),
-        entities: [Profile],
+        database: localConfigService.getMongoDBName(),
         synchronize: true,
+        logging: true,
+        entities: [Profile, LearnSeries, LearnPage, LearnSection],
       }),
       inject: [LocalConfigService],
     }),

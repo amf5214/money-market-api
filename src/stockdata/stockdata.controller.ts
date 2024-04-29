@@ -11,24 +11,24 @@ export class StockdataController {
 
 	@Post('ticker')
 	tickerdata(@Body() dto:TickerDto) {
-		const response = this.stockdataService.tickerdata(dto);
+		const response = this.stockdataService.tickerData(dto);
 		console.log(response);
 		return response;
 	}
 
 	@Get('market-status')
 	marketstatus() {
-		return this.stockdataService.marketstatus();
+		return this.stockdataService.marketStatus();
 	}
 
 	@Post('financials')
 	tickerfinancials(@Body() dto:FinancialsDto) {
-		return this.stockdataService.tickerfinancials(dto);
+		return this.stockdataService.tickerFinancials(dto);
 	}
 
 	@Post('details')
 	tickerdetails(@Body() dto:FinancialsDto) {
-		return this.stockdataService.tickerdetails(dto);
+		return this.stockdataService.tickerDetails(dto);
 	}
 
 	@Get('winners-losers')
