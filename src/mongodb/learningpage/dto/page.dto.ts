@@ -14,7 +14,6 @@ export class PageDto {
     @IsString()
     coverArtId:number;
 
-    @IsNumber()
     learningSeriesId:ObjectId;
 
     @IsNumber()
