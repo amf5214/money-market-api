@@ -1,6 +1,6 @@
 # Money Market API
 <p align="center">
- <img src="src/Designer.png" width="300" alt="Money Market Logo" />
+ <img src="src/assets/Designer.png" width="300" alt="Money Market Logo" />
 </p>
 
 [!IMPORTANT]
@@ -75,6 +75,13 @@ $ yarn run test:cov
     <tr>
         <td>@amf5214</td>
         <td>@RileyJenkins3621</td>
+    </tr>
+<tr>
+        <td align="center">
+            <img src="src/assets/contributor1.jpeg" width="100" alt="Money Market Logo" />
+        </td>
+        <td align="center">
+        </td>
     </tr>
 </table>
 
