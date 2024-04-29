@@ -10,7 +10,12 @@ export class LocalConfigService {
   private envConfig: { [key: string]: string };
 
   constructor(filepath:string) {
-    this.envConfig = dotenv.parse(fs.readFileSync(path.resolve(__dirname, filepath)));
+    try {
+      this.envConfig = dotenv.parse(fs.readFileSync(path.resolve(__dirname, filepath)));
+    } catch {
+      this.envConfig = null;
+    }
+
   }
 
   get(key: string): string {
