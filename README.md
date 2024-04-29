@@ -60,7 +60,8 @@ STRIPE_API_KEY="token"
   <th>Key Frameworks</th>
   <th>Database Services</th>
   <th>ORMs</th>
-  <th>APIs</th>
+  <th>Data Services</th>
+  <th>Payment Services</th>
  </tr>
  
  <tr>
@@ -68,6 +69,7 @@ STRIPE_API_KEY="token"
   <td>Postgres SQL</td>
   <td>Prisma</td>
   <td>MarketAux API</td>
+  <td>Stripe API</td>
  </tr>
  <tr>
   <td>Vite</td>
@@ -85,7 +87,7 @@ STRIPE_API_KEY="token"
   <td></td>
   <td></td>
   <td></td>
-  <td>MarketAux API</td>
+  <td></td>
  </tr>
  
 </table>
