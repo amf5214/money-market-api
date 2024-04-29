@@ -17,17 +17,17 @@ export class ContentManagementController {
   ) {}
 
   @Get('home')
-  gethome() {
+  getHome() {
     return this.seriesService.findAll();
   }
 
   @Post('/series/create')
-  createseries(@Body() dto:SeriesDto, @GetAuthAccount() authAccount:AuthAccount) {
+  createSeries(@Body() dto:SeriesDto, @GetAuthAccount() authAccount:AuthAccount) {
     return this.seriesService.createSeries(authAccount.id, dto);
   }
 
   @Get('/series')
-  findseries(@Body() dto:SeriesDto) {
+  findSeries(@Body() dto:SeriesDto) {
     return this.seriesService.findOne(dto.objectId);
   }
 
@@ -50,4 +50,15 @@ export class ContentManagementController {
   findAllPages(@GetAuthAccount() authAccount:AuthAccount, @Body() dto:PageDto) {
     return this.pageService.findAllBySeries(dto.learningSeriesId);
   }
+
+  @Post('/series/update/:id/:field')
+  async updateSeries(@Body() dto: SeriesDto, @Param() params:any) {
+    await this.seriesService.updateSeries(params.id, params.field, dto);
+  }
+
+  @Post('/pages/update/:id/:field')
+  async updatePage(@Body() dto: PageDto, @Param() params:any) {
+    await this.pageService.updatePage(params.id, params.field, dto);
+  }
+
 }
