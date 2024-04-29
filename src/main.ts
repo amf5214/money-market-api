@@ -18,6 +18,7 @@ async function bootstrap() {
 
   // Call to specify the port that the api will run on
   await app.listen(process.env.PORT || 3000);
+  console.log("port running on " + process.env.PORT || 3000);
 }
 
 // Function to run the application
