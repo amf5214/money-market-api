@@ -6,7 +6,6 @@ import { Profile } from './entities/profile.entity'
 import { SeriesService } from "./learningseries";
 import { PageService } from "./learningpage";
 import { SectionService } from "./learningsection";
-import { FilecontentService } from "./filecontent";
 import { LearnPage } from './entities/learnpage.entity';
 import { FileContent } from './entities/filecontent.entity';
 import { LearnSection } from './entities/learnsection.entity';
@@ -16,7 +15,7 @@ import { LearnSeries } from './entities/learnseries.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Profile, LearnPage, LearnSeries, LearnSection, FileContent])],
   controllers: [],
-  providers: [ProfileService, SeriesService, PageService, SectionService, FilecontentService],
-  exports: [ProfileService, SeriesService, PageService, SectionService, FilecontentService],
+  providers: [ProfileService, SeriesService, PageService, SectionService],
+  exports: [ProfileService, SeriesService, PageService, SectionService],
 })
 export class MongodbModule {}
