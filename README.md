@@ -60,6 +60,8 @@ DATABASE_URL="postgres uri"
 JWT_SECRET="secret key"
 
 STRIPE_API_KEY="token"
+STRIPE_PRICE_ID="price_id"
+FRONTEND_URL="/checkout/session"
 ```
 
 ## Services Used
