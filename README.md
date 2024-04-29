@@ -56,14 +56,37 @@ STRIPE_API_KEY="token"
 
 <table>
  
- <tr><td>NestJS</td></tr>
- <tr><td>Prisma</td></tr>
- <tr><td>TypeORM</td></td></tr>
- <tr><td>MarketAux API</td></tr>
- <tr><td>Alpha Vantage API</td></tr>
- <tr><td>Polygon API</td></tr>
- <tr><td>Postgres SQL</td></tr>
- <tr><td>MongoDB</td></tr>
+ <tr>
+  <th>Key Frameworks</th>
+  <th>Database Services</th>
+  <th>ORMs</th>
+  <th>APIs</th>
+ </tr>
+ 
+ <tr>
+  <td>NestJS</td>
+  <td>Postgres SQL</td>
+  <td>Prisma</td>
+  <td>MarketAux API</td>
+ </tr>
+ <tr>
+  <td>Vite</td>
+  <td>MongoDB</td>
+  <td>TypeORM</td>
+  <td>Alpha Vantage API</td>
+ </tr>
+ <tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td>Polygon API</td>
+ </tr>
+  <tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td>MarketAux API</td>
+ </tr>
  
 </table>
 
