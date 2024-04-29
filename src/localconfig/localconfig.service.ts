@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as process from "node:process";
 
 @Injectable()
 export class LocalConfigService {
@@ -17,34 +18,70 @@ export class LocalConfigService {
   }
 
  getStripeApi() {
-    return this.envConfig['STRIPE_API_KEY'];
+    if(process.env.STATE == "dev") {
+      return this.envConfig['STRIPE_API_KEY'];
+    } else {
+      return process.env.STRIPE_API_KEY;
+    }
+
   }
 
   getMongoDBHost(): string {
-    return this.envConfig['MONGODB_HOST'];
+    if(process.env.STATE == "dev") {
+      return this.envConfig['MONGODB_HOST'];
+    } else {
+      return process.env.MONGODB_HOST;
+    }
+
   }
 
   getMongoDBPort(): number {
-    return Number(this.envConfig['MONGODB_PORT']);
+    if(process.env.STATE == "dev") {
+      return Number(this.envConfig['MONGODB_PORT']);
+    } else {
+      return Number.parseInt(process.env.MONGODB_PORT);
+    }
+
   }
 
   getMongoDBUser(): string {
-    return this.envConfig['MONGODB_USERNAME'];
+    if(process.env.STATE == "dev") {
+      return this.envConfig['MONGODB_USERNAME'];
+    } else {
+      return process.env.MONGODB_USERNAME;
+    }
   }
 
   getMongoDBPassword(): string {
-    return this.envConfig['MONGODB_PASSWORD'];
+    if(process.env.STATE == "dev") {
+      return this.envConfig['MONGODB_PASSWORD'];
+    } else {
+      return process.env.MONGODB_PASSWORD;
+    }
   }
 
   getMongoDBName(): string {
-    return this.envConfig['MONGODB_DATABASE'];
+    if(process.env.STATE == "dev") {
+      return this.envConfig['MONGODB_DATABASE'];
+    } else {
+      return process.env.MONGODB_DATABASE;
+    }
+
   }
 
   getGoogleCloudId(): string {
-    return this.envConfig['GCP_ID'];
+    if(process.env.STATE == "dev") {
+      return this.envConfig['GCP_ID'];
+    } else {
+      return process.env.GCP_ID;
+    }
   }
 
   getImageBucket(): string {
-    return this.envConfig['GCP_IMAGE_BUCKET'];
+    if(process.env.STATE == "dev") {
+      return this.envConfig['GCP_IMAGE_BUCKET'];
+    } else {
+      return process.env.GCP_IMAGE_BUCKET;
+    }
   }
 }
