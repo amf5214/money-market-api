@@ -27,6 +27,8 @@ export class SeriesService {
             } case "description": {
                 series.description = dto.description;
                 break;
+            } case "coverArtId": {
+                series.coverArtId = dto.coverArtId;
             }
         }
         await this.learningSeriesRepository.save(series);
