@@ -22,4 +22,21 @@ export class GoogleCloudService {
     console.log('Listed all storage buckets.');
   }
 
+  async addItem(filePath:string, filetype:string) {
+    const destFileName:string = (new mongodb.ObjectId()).toString() + filetype;
+    console.log(destFileName);
+
+    const storage = new Storage({
+      projectId: this.localConfig.getGoogleCloudId(),
+    });
+
+    const options = {
+      destination: destFileName,
+      preconditionOpts: {ifGenerationMatch: 0},
+    };
+
+    await storage.bucket(this.localConfig.getImageBucket()).upload(filePath, options);
+    
+    return destFileName;
+  }
 }
