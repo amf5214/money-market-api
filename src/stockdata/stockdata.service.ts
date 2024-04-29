@@ -12,14 +12,14 @@ export class StockdataService {
 		private config:ConfigService,
 		) {}
 
-	async tickerdata(dto:TickerDto): Promise<any> {
+	async tickerData(dto:TickerDto): Promise<any> {
 		const basePath = `https://api.polygon.io/v2/aggs/ticker/${dto.tickerName}/range/1/${dto.timeSpan}/${dto.startDate}/${dto.endDate}?adjusted=true&sort=asc&limit=${dto.limit}&apiKey=${this.config.get('POLYGON_API_TOKEN')}`;
 		const observable = this.httpService.get(basePath);
 		const response = await firstValueFrom(observable); 
 		return response.data;
 	}
 
-	async marketstatus(): Promise<any> {
+	async marketStatus(): Promise<any> {
 		const basePath = 'https://api.polygon.io/v1/marketstatus/now';
 		const observable = this.httpService.get(`${basePath}?apiKey=${this.config.get('POLYGON_API_TOKEN')}`);
 		const response = await firstValueFrom(observable);  
@@ -30,14 +30,14 @@ export class StockdataService {
 		};	
 	}
 
-	async tickerfinancials(dto:FinancialsDto): Promise<any> {
+	async tickerFinancials(dto:FinancialsDto): Promise<any> {
 		const basePath = 'https://api.polygon.io/vX/reference/financials';
 		const observable = this.httpService.get(`${basePath}?ticker=${dto.tickerName}&timeframe=quarterly&apiKey=${this.config.get('POLYGON_API_TOKEN2')}`);
 		const response = await firstValueFrom(observable); 
 		return response.data;
 	};
 
-	async tickerdetails(dto:FinancialsDto): Promise<any> {
+	async tickerDetails(dto:FinancialsDto): Promise<any> {
 		const basePath = 'https://api.polygon.io/v3/reference/tickers';
 		const observable = this.httpService.get(`${basePath}/${dto.tickerName}?apiKey=${this.config.get('POLYGON_API_TOKEN2')}`);
 		const response = await firstValueFrom(observable); 
