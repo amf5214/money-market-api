@@ -11,14 +11,14 @@ export class NewsController {
 
 	// Route to recieve ticker specific news as a json object
 	@Post('ticker-news')
-	tickernews(@Body() dto:NewsDto) {
-		return this.newsService.tickernews(dto);
+	tickerNews(@Body() dto:NewsDto) {
+		return this.newsService.tickerNews(dto);
 	}
 
 	// Route to recieve market news as a json object
 	@Post('market-news')
-	async marketnews(@Body() dto:NewsDto) {
-		const news = await this.newsService.marketnews(dto);
+	async marketNews(@Body() dto:NewsDto) {
+		const news = await this.newsService.marketNews(dto);
 		console.log(news);
 		return news;
 	}
