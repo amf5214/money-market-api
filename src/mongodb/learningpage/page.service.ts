@@ -63,7 +63,11 @@ export class PageService {
 
     // Function for finding an author's Series'
     async findAllBySeries(id: ObjectId): Promise<LearnPage[] | null> {
-        return this.learningPageRepository.findBy({ learningSeriesId: id });
+        return this.learningPageRepository.find({
+            where: {
+                learningSeriesId: id
+            }
+        });
     }
     
 }
