@@ -17,17 +17,17 @@ export class ContentManagementController {
   ) {}
 
   @Get('home')
-  gethome() {
+  getHome() {
     return this.seriesService.findAll();
   }
 
   @Post('/series/create')
-  createseries(@Body() dto:SeriesDto, @GetAuthAccount() authAccount:AuthAccount) {
+  createSeries(@Body() dto:SeriesDto, @GetAuthAccount() authAccount:AuthAccount) {
     return this.seriesService.createSeries(authAccount.id, dto);
   }
 
   @Get('/series')
-  findseries(@Body() dto:SeriesDto) {
+  findSeries(@Body() dto:SeriesDto) {
     return this.seriesService.findOne(dto.objectId);
   }
 
