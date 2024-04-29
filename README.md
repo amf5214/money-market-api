@@ -13,6 +13,8 @@
 
 # Create .env file in the project directory
 
+# Make sure that yarn package manager is installed
+
 # Install necessary packages
 $ yarn install
 
