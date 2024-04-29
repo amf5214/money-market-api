@@ -95,6 +95,7 @@ GCP_IMAGE_BUCKET="path"
   <th>ORMs</th>
   <th>Data Services</th>
   <th>Payment Services</th>
+  <th>Storage Solutions</th>
  </tr>
  
  <tr>
@@ -103,6 +104,7 @@ GCP_IMAGE_BUCKET="path"
   <td>Prisma</td>
   <td>MarketAux API</td>
   <td>Stripe API</td>
+  <td></td>
  </tr>
  <tr>
   <td>Vite</td>
@@ -110,12 +112,14 @@ GCP_IMAGE_BUCKET="path"
   <td>TypeORM</td>
   <td>Alpha Vantage API</td>
   <td></td>
+  <td></td>
  </tr>
  <tr>
   <td></td>
   <td></td>
   <td></td>
   <td>Polygon API</td>
+  <td></td>
   <td></td>
  </tr>
  
