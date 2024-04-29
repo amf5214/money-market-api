@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from "@nestjs/common";
 
 import { LocalConfigService } from './localconfig.service';
 
+@Global()
 @Module({
   providers: [
     {
