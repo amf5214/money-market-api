@@ -29,7 +29,7 @@ export class NewsService {
 	) {}
 
 	// Service function to handle ticker news request 
-	async tickernews(dto:NewsDto) {
+	async tickerNews(dto:NewsDto) {
 		let tickerStr = dto.tickers.join(',');
 		const basePath = `https://api.marketaux.com/v1/news/all?symbols=${tickerStr}&countries=${dto.country}&language=${dto.language}&filter_entities=true&limit=${dto.limit}&published_after=${dto.publishedAfterDate}&api_token=${this.config.get('MARKETAUX_API_TOKEN')}`;
 		const observable = this.httpService.get(`${basePath}`);
@@ -39,7 +39,7 @@ export class NewsService {
 	}
 
 	// Service function to handle market news request 
-	async marketnews(dto:NewsDto) {
+	async marketNews(dto:NewsDto) {
 		if(dto.country == null) {
 			dto.country = 'us';
 		}
@@ -66,7 +66,7 @@ export class NewsService {
 	}
 
 	// Service function to handle market news request 
-	async marketnewsDemo(dto:NewsDto) {
+	async marketNewsDemo(dto:NewsDto) {
 		let newsArr:NewsStory[] = [];
 		const dummyStory:NewsStory = {
 			image_url: "https://i-invdn-com.investing.com/news/LYNXNPEF080OM_L.jpg",

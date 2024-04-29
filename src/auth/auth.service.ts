@@ -43,7 +43,7 @@ export class AuthService {
 	}
 
 	// Service to handle sign in attempts
-	async signin(dto:AuthDto) {
+	async signIn(dto:AuthDto) {
 
 		// Grab AuthAccount from database using unique email from dto
 		const auth = await this.prisma.authAccount.findUnique({
@@ -76,7 +76,7 @@ export class AuthService {
 	}
 
 	// Service to handle sign up attempts
-	async signup(dto:AuthDto) {
+	async signUp(dto:AuthDto) {
 
 		// Hash the provided password for secure storage
 		const hash = await argon.hash(dto.password);
