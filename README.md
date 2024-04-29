@@ -3,6 +3,10 @@
  <img src="src/Designer.png" width="300" alt="Money Market Logo" />
 </p>
 
+[!IMPORTANT]
+This api will not run without configuring the environment file
+
+
 ## Running the app
 
 ```bash
