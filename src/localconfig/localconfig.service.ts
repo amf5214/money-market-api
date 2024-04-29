@@ -39,4 +39,12 @@ export class LocalConfigService {
   getMongoDBName(): string {
     return this.envConfig['MONGODB_DATABASE'];
   }
+
+  getGoogleCloudId(): string {
+    return this.envConfig['GCP_ID'];
+  }
+
+  getImageBucket(): string {
+    return this.envConfig['GCP_IMAGE_BUCKET'];
+  }
 }
