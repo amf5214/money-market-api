@@ -76,17 +76,13 @@ STRIPE_API_KEY="token"
   <td>MongoDB</td>
   <td>TypeORM</td>
   <td>Alpha Vantage API</td>
+  <td></td>
  </tr>
  <tr>
   <td></td>
   <td></td>
   <td></td>
   <td>Polygon API</td>
- </tr>
-  <tr>
-  <td></td>
-  <td></td>
-  <td></td>
   <td></td>
  </tr>
  
