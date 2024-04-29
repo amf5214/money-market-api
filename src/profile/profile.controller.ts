@@ -12,27 +12,27 @@ export class ProfileController {
 		private profileService:ProfileService,
 	) {}
 
-	@Post('create')
-	async createone(@Body() dto:ProfileDto, @GetAuthAccount() authAccount:AuthAccount) {
+	@Post('/create')
+	async createOne(@Body() dto:ProfileDto, @GetAuthAccount() authAccount:AuthAccount) {
 		return this.profileService.createOne(dto, authAccount.id);
 	}
 
-	@Patch('update/:id')
-	async editone(@Body() dto:ProfileDto, @Param() params:any) {
+	@Patch('/update/:id')
+	async editOne(@Body() dto:ProfileDto, @Param() params:any) {
 		return this.profileService.editOne(params.id, dto);
 	}
 
-	@Get('showall')
-	findall() {
+	@Get('/showall')
+	findAll() {
 		return this.profileService.findAll();
 	}
 
-	@Get(':id')
-	findone(@Param() params:any) {
+	@Get('/:id')
+	findOne(@Param() params:any) {
 		return this.profileService.findOne(params.id);
 	}
 
-	@Get('remove/:id')
+	@Get('/remove/:id')
 	remove(@Param() params:any) {
 		return this.profileService.remove(params.id);
 	}
