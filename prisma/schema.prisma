@@ -25,9 +25,17 @@ model User {
   authAccount AuthAccount @relation(fields: [authAccountId], references: [id], onDelete: Cascade)
   subscriptions Subscription[]
   learningSeries LearningSeries[]
+  customers Customer[]
 }
+model Customer {
+  id        Int    @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-
+  customerId String @unique
+  userId     Int    @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 model AuthAccount {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
