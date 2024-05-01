@@ -76,4 +76,33 @@ export class PaymentService {
 
     return session.url;
   }
+  async verifyUserSubscription(authAccountId: number): Promise<boolean> {
+    const user = await this.userService.getownuser(authAccountId);
+    const customerId = await this.getCustomerIdForUser(user.id);
+
+    if (!customerId) {
+      console.log("No customer ID found for user.");
+      return false;
+    }
+
+    const subscriptions = await this.stripe.subscriptions.list({
+      customer: customerId,
+      status: 'active', 
+      limit: 1 
+    });
+
+    const hasActiveSubscription = subscriptions.data.length > 0;
+   
+
+    return hasActiveSubscription;
+  }
+
+  private async getCustomerIdForUser(userId: number): Promise<string | null> {
+    const customer = await this.prismaService.customer.findUnique({
+      where: { userId: userId },
+    });
+
+    return customer?.customerId ?? null;
+  }
 }
+
