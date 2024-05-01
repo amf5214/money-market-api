@@ -1,4 +1,4 @@
-import { Controller, Post, Redirect, HttpStatus } from '@nestjs/common';
+import { Get, HttpException,Controller, Post, Redirect, HttpStatus } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { JwtGuard } from 'src/auth/guard';
 import { UseGuards } from '@nestjs/common/decorators';
@@ -19,5 +19,19 @@ export class PaymentController {
     );
  
     return { url: checkoutSessionUrl, statusCode: HttpStatus.FOUND };
+  }
+  @Get('verify-subscription')
+  async verifySubscription(@GetAuthAccount() authAccount: AuthAccount) {
+    try {
+      const isValidSubscription = await this.paymentService.verifyUserSubscription(authAccount.id);
+
+      if (!isValidSubscription) {
+        throw new HttpException('No active subscription found', HttpStatus.FORBIDDEN);
+      }
+
+      return { message: 'Active subscription confirmed', statusCode: HttpStatus.OK };
+    } catch (error) {
+      throw new HttpException('Error verifying subscription: ' + error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }
