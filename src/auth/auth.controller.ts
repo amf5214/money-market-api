@@ -10,17 +10,17 @@ export class AuthController {
 	constructor(private authService:AuthService) {}
 
 	// signup route within the auth path
-	// Specifies success http codde with @HttpCode decorator
+	// Specifies success http code with @HttpCode decorator
 	@HttpCode(HttpStatus.CREATED)
-	@Post('signup')
+	@Post('/signup')
 	signUp(@Body() dto:AuthDto) {
 		return this.authService.signUp(dto);
 	}
 
 	// signin route within the auth path
-	// Specifies success http codde with @HttpCode decorator
+	// Specifies success http code with @HttpCode decorator
 	@HttpCode(HttpStatus.OK)
-	@Post('signin')
+	@Post('/signin')
 	signIn(@Body() dto:AuthDto) {
 		return this.authService.signIn(dto);
 	}
