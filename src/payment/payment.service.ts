@@ -16,7 +16,7 @@ export class PaymentService {
     private userService: UserService,
     private prismaService: PrismaService,
   ) {
-    this.priceId = this.config.get('STRIPE_PRICE_ID');
+    this.priceId = this.config.getStripePriceId();
     this.stripe = new Stripe(this.config.getStripeApi());
   }
 

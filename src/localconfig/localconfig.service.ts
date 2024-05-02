@@ -22,6 +22,15 @@ export class LocalConfigService {
     return this.envConfig[key];
   }
 
+  getStripePriceId() {
+    if(process.env.STATE == "dev") {
+      return this.envConfig['STRIPE_PRICE_ID'];
+    } else {
+      return process.env.STRIPE_PRICE_ID;
+    }
+
+  }
+
  getStripeApi() {
     if(process.env.STATE == "dev") {
       return this.envConfig['STRIPE_API_KEY'];
