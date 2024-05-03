@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { PageDto } from './dto';
 import { InjectRepository } from "@nestjs/typeorm";
 import { LearnSection } from "../entities/learnsection.entity";
-import { ObjectId, Repository } from "typeorm";
+import { ObjectId as TypeObjectId, Repository } from "typeorm";
+import { ObjectId } from 'mongodb';
 import { LearnPage } from "../entities/learnpage.entity";
 import { LearnSeries } from "../entities/learnseries.entity";
 import { UserService } from "../../user/user.service";
@@ -18,7 +19,7 @@ export class PageService {
       private userService: UserService,
     ) {};
 
-    async updatePage(pageId:ObjectId, field:string, dto:PageDto) {
+    async updatePage(pageId:TypeObjectId, field:string, dto:PageDto) {
         let page:LearnPage = await this.learningPageRepository.findOneBy({ id: pageId });
         switch(field) {
             case "title": {
@@ -57,15 +58,15 @@ export class PageService {
     }
 
     // Function for finding a specific profile object
-    async findOne(id: ObjectId) {
-        return this.learningPageRepository.findOneBy({ id });
+    async findOne(id: string) {
+        return this.learningPageRepository.findOne({ where: {id: new ObjectId(id)} });
     }
 
     // Function for finding an author's Series'
-    async findAllBySeries(id: ObjectId): Promise<LearnPage[] | null> {
-        return this.learningPageRepository.find({
+    async findAllBySeries(id: string): Promise<LearnPage[] | null> {
+        return await this.learningPageRepository.find({
             where: {
-                learningSeriesId: id
+                learningSeriesId: id,
             }
         });
     }

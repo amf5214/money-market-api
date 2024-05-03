@@ -3,7 +3,7 @@ import { ObjectId } from "typeorm";
 
 export class SeriesDto {
 
-    objectId:ObjectId;
+    _id:ObjectId;
 
     @IsOptional()
     @IsString()
@@ -24,4 +24,8 @@ export class SeriesDto {
     @IsOptional()
     @IsNumber()
     authorUserId:number;
+
+    @IsOptional()
+    @IsString()
+    learningSeriesId:string;
 }

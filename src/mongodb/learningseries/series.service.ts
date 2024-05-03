@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ObjectId, Repository } from "typeorm";
+import { ObjectId as TypeObjectId, Repository } from "typeorm";
+import { ObjectId } from 'mongodb';
 
 import { SeriesDto } from './dto';
 import { LearnSeries } from "../entities/learnseries.entity";
@@ -18,8 +19,8 @@ export class SeriesService {
         private userService: UserService,
     ) {};
 
-    async updateSeries(seriesId:ObjectId, field:string, dto:SeriesDto) {
-        let series:LearnSeries = await this.learningSeriesRepository.findOneBy({ id: seriesId });
+    async updateSeries(seriesId:string, field:string, dto:SeriesDto) {
+        let series:LearnSeries = await this.learningSeriesRepository.findOneBy({ _id: new ObjectId(seriesId) });
         switch(field) {
             case "title": {
                 series.title = dto.title;
@@ -54,8 +55,8 @@ export class SeriesService {
     }
 
     // Function for finding a specific profile object
-    findOne(id: ObjectId): Promise<LearnSeries | null> {
-        return this.learningSeriesRepository.findOneBy({ id });
+    findOne(id: string): Promise<LearnSeries | null> {
+        return this.learningSeriesRepository.findOne({where: {_id: new ObjectId(id)}});
     }
 
     // Function for finding an author's Series'

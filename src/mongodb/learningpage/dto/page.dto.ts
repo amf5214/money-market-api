@@ -3,7 +3,7 @@ import { ObjectId } from 'typeorm';
 
 export class PageDto {
 
-    objectId:ObjectId;
+    _id:ObjectId;
 
     @IsOptional()
     @IsString()
@@ -17,7 +17,9 @@ export class PageDto {
     @IsString()
     coverArtId:number;
 
-    learningSeriesId:ObjectId;
+    @IsOptional()
+    @IsString()
+    learningSeriesId:string;
 
     @IsOptional()
     @IsNumber()
@@ -26,5 +28,9 @@ export class PageDto {
     @IsOptional()
     @IsString()
     videoSource:string;
+
+    @IsOptional()
+    @IsString()
+    learningPageId;
 
 }

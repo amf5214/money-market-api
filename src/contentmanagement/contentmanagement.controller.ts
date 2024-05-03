@@ -4,7 +4,6 @@ import { SeriesDto } from "../mongodb/learningseries/dto";
 import { GetAuthAccount } from "../auth/decorator";
 import { AuthAccount } from "@prisma/client";
 import { SeriesService } from "../mongodb/learningseries";
-import { ObjectId } from "typeorm";
 import { PageService } from "../mongodb/learningpage";
 import { PageDto } from "../mongodb/learningpage/dto";
 
@@ -26,9 +25,10 @@ export class ContentManagementController {
     return this.seriesService.createSeries(authAccount.id, dto);
   }
 
-  @Get('/series')
+  @Post('/series')
   findSeries(@Body() dto:SeriesDto) {
-    return this.seriesService.findOne(dto.objectId);
+    console.log(dto.learningSeriesId);
+    return this.seriesService.findOne(dto.learningSeriesId);
   }
 
   @Get('/series/owned')
@@ -43,10 +43,10 @@ export class ContentManagementController {
 
   @Get('/pages')
   findPage(@Body() dto:PageDto) {
-    return this.pageService.findOne(dto.objectId);
+    return this.pageService.findOne(dto.learningPageId);
   }
 
-  @Get('/pages/byseries')
+  @Post('/pages/byseries')
   findAllPages(@GetAuthAccount() authAccount:AuthAccount, @Body() dto:PageDto) {
     return this.pageService.findAllBySeries(dto.learningSeriesId);
   }

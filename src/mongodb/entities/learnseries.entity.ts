@@ -4,7 +4,7 @@ import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 @Entity()
 export class LearnSeries {
   @ObjectIdColumn()
-  id: ObjectId; 
+  _id: ObjectId;
 
   @Column()
   title:string;

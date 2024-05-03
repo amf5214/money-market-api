@@ -15,8 +15,8 @@ export class LearnPage {
   @Column()
   coverArtId:number;
 
-  @ObjectIdColumn()
-  learningSeriesId:ObjectId;
+  @Column()
+  learningSeriesId:string;
 
   @Column()
   orderId:number;
