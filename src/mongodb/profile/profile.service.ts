@@ -43,13 +43,11 @@ export class ProfileService {
   }
   // Function for finding one's own profile object
   async findOwn(authAccountId: number): Promise<Profile | null> {
-    const profiles:Profile[] = await this.profilesRepository.find({
+    return await this.profilesRepository.findOne({
       where: {
         authAccountId: authAccountId
-      },
-      take: 1
+      }
     });
-    return profiles.length > 0 ? profiles[0] : null;
   }
 
 }
