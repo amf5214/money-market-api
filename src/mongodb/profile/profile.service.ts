@@ -42,8 +42,14 @@ export class ProfileService {
     await this.profilesRepository.delete(id);
   }
   // Function for finding one's own profile object
-  findOwn(authAccountId: number): Promise<Profile | null> {
-    return this.profilesRepository.findOneBy({authAccountId: authAccountId });
+  async findOwn(authAccountId: number): Promise<Profile | null> {
+    const profiles:Profile[] = await this.profilesRepository.find({
+      where: {
+        authAccountId: authAccountId
+      },
+      take: 1
+    });
+    return profiles.length > 0 ? profiles[0] : null;
   }
 
 }
