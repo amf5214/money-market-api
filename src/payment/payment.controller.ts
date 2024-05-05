@@ -1,4 +1,4 @@
-import { Get, HttpException,Controller, Post, Redirect, HttpStatus } from '@nestjs/common';
+import { Get, HttpException, Controller, Post, Redirect, HttpStatus, Req, Res, Options } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { JwtGuard } from 'src/auth/guard';
 import { UseGuards } from '@nestjs/common/decorators';
@@ -9,7 +9,12 @@ import { GetAuthAccount } from 'src/auth/decorator';
 @Controller('payment')
 export class PaymentController {
   constructor(private paymentService: PaymentService) {}
-  
+
+  @Options()
+  optionsHandler(@Req() req, @Res() res) {
+    res.status(200).send();
+  }
+
   @Post('create-checkout-session')
   @Redirect()
   async createCheckoutSession(@GetAuthAccount() authAccount: AuthAccount) {
