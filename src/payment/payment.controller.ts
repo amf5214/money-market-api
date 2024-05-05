@@ -9,7 +9,7 @@ import { GetAuthAccount } from 'src/auth/decorator';
 @Controller('payment')
 export class PaymentController {
   constructor(private paymentService: PaymentService) {}
-
+  
   @Post('create-checkout-session')
   @Redirect()
   async createCheckoutSession(@GetAuthAccount() authAccount: AuthAccount) {
@@ -18,7 +18,7 @@ export class PaymentController {
       authAccount.email,
     );
  
-    return { url: checkoutSessionUrl, statusCode: HttpStatus.FOUND };
+    return { url: checkoutSessionUrl };
   }
   @Get('verify-subscription')
   async verifySubscription(@GetAuthAccount() authAccount: AuthAccount) {
