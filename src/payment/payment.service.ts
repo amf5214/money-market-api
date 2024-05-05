@@ -70,7 +70,7 @@ export class PaymentService {
       ],
       mode: 'subscription',
       customer: stripeCustomerId,
-      success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.FRONTEND_URL}/success`,
       cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     });
 
