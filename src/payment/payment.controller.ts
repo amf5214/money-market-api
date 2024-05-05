@@ -17,12 +17,11 @@ export class PaymentController {
 
   @Post('create-checkout-session')
   async createCheckoutSession(@GetAuthAccount() authAccount: AuthAccount) {
-    const checkoutSessionUrl = await this.paymentService.createCheckoutSession(
+    return await this.paymentService.createCheckoutSession(
       authAccount.id,
       authAccount.email,
     );
- 
-    return { url: checkoutSessionUrl };
+
   }
   @Get('verify-subscription')
   async verifySubscription(@GetAuthAccount() authAccount: AuthAccount) {

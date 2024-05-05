@@ -60,7 +60,7 @@ export class PaymentService {
       stripeCustomerId = customer.id;
     }
 
-    const session = await this.stripe.checkout.sessions.create({
+    return await this.stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
@@ -74,7 +74,6 @@ export class PaymentService {
       cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     });
 
-    return session.url;
   }
   async verifyUserSubscription(authAccountId: number): Promise<boolean> {
     const user = await this.userService.getownuser(authAccountId);
