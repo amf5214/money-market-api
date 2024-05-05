@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { Repository, ObjectId } from 'typeorm';
+import { Repository, ObjectId as TypeObjectId } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 import { Profile } from '../entities/profile.entity';
 import { ProfileDto } from './dto';
@@ -23,8 +24,8 @@ export class ProfileService {
   }
 
   // Function for editing profile objects
-  async editOne(id:ObjectId, dto:ProfileDto) {
-    await this.profilesRepository.update(id, dto);
+  async editOne(id:string, dto:ProfileDto) {
+    await this.profilesRepository.update(new ObjectId(id), dto);
   }
 
   // Function for finding all profile objects
@@ -33,12 +34,12 @@ export class ProfileService {
   }
 
   // Function for finding a specific profile object
-  findOne(id: ObjectId): Promise<Profile | null> {
+  findOne(id: TypeObjectId): Promise<Profile | null> {
     return this.profilesRepository.findOneBy({ id });
   }
 
   // Function for deleting a profile object
-  async remove(id: ObjectId): Promise<void> {
+  async remove(id: TypeObjectId): Promise<void> {
     await this.profilesRepository.delete(id);
   }
   // Function for finding one's own profile object
