@@ -16,7 +16,6 @@ export class PaymentController {
   }
 
   @Post('create-checkout-session')
-  @Redirect()
   async createCheckoutSession(@GetAuthAccount() authAccount: AuthAccount) {
     const checkoutSessionUrl = await this.paymentService.createCheckoutSession(
       authAccount.id,
