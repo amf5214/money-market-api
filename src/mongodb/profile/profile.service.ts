@@ -24,8 +24,9 @@ export class ProfileService {
   }
 
   // Function for editing profile objects
-  async editOne(id:string, dto:ProfileDto) {
-    await this.profilesRepository.update(new ObjectId(id), dto);
+  async editOne(id:number, dto:ProfileDto) {
+    const profile:Profile = await this.findOwn(id);
+    await this.profilesRepository.update(profile.id, dto);
   }
 
   // Function for finding all profile objects

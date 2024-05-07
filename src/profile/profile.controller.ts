@@ -17,9 +17,9 @@ export class ProfileController {
 		return this.profileService.createOne(dto, authAccount.id);
 	}
 
-	@Patch('/update/:id')
-	async editOne(@Body() dto:ProfileDto, @Param() params:any) {
-		return this.profileService.editOne(params.id, dto);
+	@Patch('/update')
+	async editOne(@Body() dto:ProfileDto, @GetAuthAccount() authAccount:AuthAccount) {
+		return this.profileService.editOne(authAccount.id, dto);
 	}
 
 	@Get('/showall')
